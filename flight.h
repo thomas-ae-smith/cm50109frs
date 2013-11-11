@@ -14,6 +14,11 @@ class Flight
 		int getSeatAvailability(SeatClass _class);
 		vector<Passenger*> getPassengers(SeatClass _class);
 		vector<Passenger*> getWaiting(SeatClass _class);
+
+		enum SeatClass { 
+			First,
+			Economy
+		};
 		
 	private:
 		string m_number;
