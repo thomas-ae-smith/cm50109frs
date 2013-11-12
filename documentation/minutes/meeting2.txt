@@ -1,0 +1,36 @@
+12/11/13 2:30pm, EB
+
+Discussion of todo-lists:
+	No Google accounts
+	Not complex enough to need web services
+
+Scheduling:
+	- Implement:
+		Model
+		Flight
+		Passenger
+		Controller
+	- Views:
+		CLI
+		Qt GUI
+	- Testing:
+		Google Tests
+	- Report:
+		Considered later
+	- Individual report:
+		Ditto
+
+Tasks:
+	All:
+		Read up on Google Tests
+		Implement respective code files
+		Write daily work diaries
+	Anamaria:
+		Commit initial GUI files
+	Emily:
+		Type up Passenger header
+	Tom:
+		Add Model Methods
+
+Next meeting:
+	Thursday 11:15am, EB
