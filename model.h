@@ -6,12 +6,17 @@
 //  Copyright (c) 2013 Lang Yaping. All rights reserved.
 //
 
-#include <iostream>
+#include <string>
 
-class model{
-    map<String,Passenger*> m_passengers;
-    map<String,Flights*> m_flgihtsbyCode;
-    map<String,Flights*> m_flightByDare;
-    model* m_model;
-    
-}
+class Model {
+	private:
+		map<String,Passenger*> m_passengers;
+		map<String,Flight*> m_flightByCode;
+		map<String,Flight*> m_flightByDate;
+		model* m_model;
+
+	public:
+		Passenger* getPassengerByName(string _passenger);
+		Flight* getFlightByCode(string _code);
+		vector<Flight*> getFlightsByDate(string _date);
+};
