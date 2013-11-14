@@ -1,0 +1,18 @@
+Anamaria Ciucanu - diary entry 1
+Date: 14/11/2013
+
+
+Done:
+
+- wrote Controller.h header file 
+- wrote Controller.cpp source file
+- wrote AbstractView.h (abstract) header file
+- wrote CLIView.h command line view header file - CLIView class inherits from AbstractView
+- wrote CLIView.cpp command line view source file
+
+
+To Do:
+- lookup Google Test - unit testing for cpp
+- write GUIView.h and GUIView.cpp files for the graphical user interface view
+
+
