@@ -111,3 +111,15 @@ vector<Passenger*> Controller::makeFlightWaitingEnquiry(string _code, SeatClass 
           return NULL;
       }
 }
+
+//Display the passengers (either waiting or on the booking list
+	void Controller::displayPassengers(vector<Passenger*>* _passengers)
+	{
+	 m_view->displayPassengers(_passengers);
+	}
+
+//Display the flights (of a passenger)
+	void Controller::displayFlights(vector<Flight*>* _flights)
+	{
+	 m_view->displayFlights(_flights);	
+	}
