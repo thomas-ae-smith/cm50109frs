@@ -1,6 +1,7 @@
 #include "Controller.h"
 #include "Model.h"
 #include "View.h"
+#include "Flight.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -16,12 +17,25 @@ Controller::~Controller()
     //No space was allocated
 }
 
-string Controller::makeReservation(string _name, string _number, SeatClass _class)
+
+bool Controller::checkAnswer(char _answer)
+{
+   if(_answer=='y' || _answer=='Y' || _answer=='1')
+   {
+       return true;
+   }
+   else
+   {
+    return false;
+   }
+}
+
+string Controller::makeReservation(string _name, string _code, SeatClass _class)
 {
     //Adds a person on a flight
 
     //Get the flight
-    Flight *auxFlight = m_model->getFlightByCode(_number);
+    Flight *auxFlight = m_model->getFlightByCode(_code);
     //Get the passenge
     Passenger *auxPassenger = m_model->getPassengerByName(_name);
 
@@ -31,7 +45,91 @@ string Controller::makeReservation(string _name, string _number, SeatClass _clas
     if ((auxFlight != NULL) && (auxPassenger != NULL))
     {
         //checks the flight options and puts the passenger on a waiting list if needed
-         auxFlight->addPassenger(auxPassenger, _class);
+        int check = auxFlight->getSeatAvailability(_class);
+        char option;
+
+        if(check>0)
+        {
+            //There are seats left, we add the passenger
+            auxFlight->addPassenger(auxPassenger, _class);
+        }
+        else
+        {
+            //There aren't any seats left in that class
+            if(_class == Flight.SeatClass.First)
+            {
+                //If the class is first, we offer the economy option
+                cout<<"There are no more seats left in the first class."<<endl;
+	
+                check = auxFlight->getSeatAvailability(Flight.SeatClass.Economy);
+                if(check>0)
+                {
+                    cout<<"Would you like a seat in the economy class? y/n"<<endl;
+                    cin>>option;
+
+                    if(checkAnswer(option))
+                    {
+                        auxFlight->addPassenger(auxPassenger, Flight.SeatClass.Economy);
+                    }
+                    else
+                    {
+                        cout<<"Would you like to be added on the First class waiting list? y/n"<<endl;
+                        cin>>option;
+
+                        if(checkAnswer(option))
+                        {
+                            auxFlight->addPassenger(auxPassenger, Flight.SeatClass.First);
+                        }
+                        else
+                        {
+                            cout<<"You were not added to the "<<auxFlight->getCode()<<", thank you!"<<endl;
+                        }
+                    }
+                }
+                else //There are no seats in either first or economy classes
+                {
+                    cout<<"There are no seats in either first or economy classes. "<<endl;
+                    cout<<"Would you like to be added on the First class waiting list? y/n"<<endl;
+                    cin>>option;
+
+                    if(checkAnswer(option))
+                    {
+                       auxFlight->addPassenger(auxPassenger, Flight.SeatClass.First);
+                    }
+                    else
+                    {
+                       cout<<"Would you like to be added on the Economy class waiting list? y/n"<<endl;
+                       cin>>option;
+
+                       if(checkAnswer(option))
+                       {
+                         auxFlight->addPassenger(auxPassenger, Flight.SeatClass.Economy);
+                       }
+                       else
+                       {
+                           cout<<"You were not added to either waiting list."<<endl;
+                       }
+                    }
+                }
+            }
+
+            else //The class of unavailable seats is economy
+            {
+                cout<<"There are no seats available.  Would you like to be put on the waiting list? y/n"<<endl;
+                cin>>option;
+                if(checkAnswer(option))
+                {
+                     auxFlight->addPassenger(auxPassenger, Flight.SeatClass.Economy);
+                }
+
+                else
+                {
+                    cout<<"You were not added to the list.  Thank you."<<endl;
+                }
+
+
+            }
+        }
     }
     else
     {
@@ -52,7 +150,11 @@ string Controller::makeCancellation(string _name, string _code)
 
     if ((auxFlight != NULL) && (auxPassenger != NULL))
     {
+        //Remove passenger from flight
         auxFlight->removePassenger(auxPassenger);
+
+        //Remove flight from passenger
+        auxPassenger->removeFlight(auxFlight);
     }
     else
     {
@@ -113,13 +215,13 @@ vector<Passenger*> Controller::makeFlightWaitingEnquiry(string _code, SeatClass 
 }
 
 //Display the passengers (either waiting or on the booking list
-	void Controller::displayPassengers(vector<Passenger*>* _passengers)
+    void Controller::refreshPassengers(vector<Passenger*>* _passengers)
 	{
 	 m_view->displayPassengers(_passengers);
 	}
 
 //Display the flights (of a passenger)
-	void Controller::displayFlights(vector<Flight*>* _flights)
+    void Controller::refreshFlights(vector<Flight*>* _flights)
 	{
 	 m_view->displayFlights(_flights);	
 	}
