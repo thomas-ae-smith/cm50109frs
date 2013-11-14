@@ -20,6 +20,9 @@ public:
     Controller(Model* _model, View *_view);
     ~Controller();
 
+//Auxiliary methods
+    bool checkAnswer(char _answer);
+
 //Methods for accessing the model
     string makeReservation(string _name, string _number, SeatClass _class);
     string makeCancellation(string _name, string _code);
@@ -28,8 +31,8 @@ public:
     vector <Passenger*> makeFlightWaitingEnquiry(string _code, SeatClass _class);
 
 //Methods for accessing the view
-	void displayPassengers(vector<Passenger*>* _passengers);	
-	void displayFlights(vector<Flight*>* _flights);	
+    void refreshPassengers(vector<Passenger*>* _passengers);
+    void refreshFlights(vector<Flight*>* _flights);
 };
 
 #endif // CONTROLLER_H
