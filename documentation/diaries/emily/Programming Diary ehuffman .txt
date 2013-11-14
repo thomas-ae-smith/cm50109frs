@@ -1,0 +1,5 @@
+Formal Methods CW 2 diary.
+
+Nov 13
+-Completed Passenger class .cpp file. 
+-Updated Passenger header file to reflect the .cpp file.
