@@ -28,12 +28,13 @@ Passenger* Model::getPassengerByName(string _passenger){
     return m_passenger[_passenger];
 }
 
-<vector>Flight* Model:getFlightByDate(string _date){
-    m_flightByDate::iterator it;
-    it=m_flightByDate.equal_range(_date);
-    for(it=m_flightByDate.begin();it!=m_flightByDate.end();it.next())
+vector<Flight*> Model::getFlightByDate(string _date){
+    vector<Flight*> flightThisDate=nullptr;
+    pair<multimap<string,Flight*>::iterator,multimap<string,Flight*>::iterator> dateRange;
+    dateRange=m_flightByDate.equal_range(_date);
+    for(multimap<string,Flight*>::iterator it=dateRange.first;it!=dateRange.second;++it)
     {
-        return m_flightBydate;
- 
-}
+        flightThisDate.insert(m_flightByDate::it);
+    }
+    return flightThisDate;
 }
