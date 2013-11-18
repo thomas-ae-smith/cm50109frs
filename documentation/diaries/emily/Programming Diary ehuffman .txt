@@ -1,5 +1,22 @@
 Formal Methods CW 2 diary.
 
-Nov 13
--Completed Passenger class .cpp file. 
+Nov 8 - Friday
+-Briefly met with Tom and Anamaria to discuss future meetings.
+
+Nov 12 - Tuesday
+-Outlined classes (data and methods) with whole group.
+-Started Passenger class header and .cpp files with Anamaria
+-Wrote Model header file (merged with Lily's when she took over all Model duties).
+
+Nov 13 - Wednesday (no meeting)
+-Completed Passenger class .cpp file (version 1). 
 -Updated Passenger header file to reflect the .cpp file.
+-Briefly looked at Googletest.
+
+Nov 14 - Thursday
+-Pair-programmed Controller with Anamaria; finished Controller (version 1).
+-modified View with Anamaria. 
+-modified Passenger deconstructor; finished.
+
+Nov 16 - Sunday
+-Began writing tentative design for Passenger class.
