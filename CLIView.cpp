@@ -81,7 +81,7 @@ bool CLIView::checkAnswer(char _answer)
 
 //Auxiliary methods
 
-    bool CLIView::yesNoPopup(string _message)
+    bool CLIView::yesNoDialog(string _message)
     {
 	char option;
 	cout<<_message;
@@ -91,7 +91,7 @@ bool CLIView::checkAnswer(char _answer)
     }
 
 
-    void CLIView::popupMessage(string _message)
+    void CLIView::dialogMessage(string _message)
     {
 	cout<<_message;
     }
