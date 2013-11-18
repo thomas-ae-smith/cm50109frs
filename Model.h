@@ -17,7 +17,11 @@ class Model {
 		map<String,Flight*> m_flightByCode;
 		multimap<String,Flight*> m_flightByDate;
 		static model* s_model;
+<<<<<<< local
+		static string s_filename = "FCGDATA";
+=======
         static String s_filename="FCGDATA";
+>>>>>>> other
 
 	public:
         static Model* getModel();
