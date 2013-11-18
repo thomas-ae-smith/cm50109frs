@@ -8,14 +8,17 @@
 
 #include <string>
 
+//this is the class for storing data of passenger and flight using map and multimap
 class Model {
 	private:
+        Model();
 		map<String,Passenger*> m_passengers;
 		map<String,Flight*> m_flightByCode;
-		map<String,Flight*> m_flightByDate;
-		model* m_model;
+		multimap<String,Flight*> m_flightByDate;
+		static model* s_model;
 
 	public:
+        static Model* getModel();
 		Passenger* getPassengerByName(string _passenger);
 		Flight* getFlightByCode(string _code);
 		vector<Flight*> getFlightsByDate(string _date);
