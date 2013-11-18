@@ -36,8 +36,8 @@ public:
 
     bool checkAnswer(char _answer);
 
-    bool yesNoPopup(string _message);
+    bool yesNoDialog(string _message);
 
-    void popupMessage(string _message);
+    void dialogMessage(string _message);
 
 };

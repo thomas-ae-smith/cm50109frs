@@ -47,9 +47,9 @@ public:
 
     virtual bool checkAnswer(char _answer);
 
-    virtual bool yesNoPopup(string _message);
+    virtual bool yesNoDialog(string _message);
 
-    virtual void popupMessage(string _message);
+    virtual void dialogMessage(string _message);
 
 
 
