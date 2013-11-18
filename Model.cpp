@@ -10,6 +10,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "Flight.h"
 
 using namespace std;
 
