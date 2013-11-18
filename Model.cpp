@@ -17,9 +17,36 @@ using namespace std;
 //Using Singlteton pattern here to keep only one instance of Model
 Model::Model getModel(){
     if(s_model==nullptr){
-        s_model=Model();
+        s_model=Model(s_filename);
+        
     }
     return s_model;
+}
+
+Model::Model(String filename){
+    FILE* pFile;
+    string line;
+    string flightCode;
+    int seatNumber;
+    string flightTime;
+    string flightDate;
+    Flight* flightPTR;
+    pFile=fopen("filename","w+");
+    if (pFile=NULL) {
+        printf("Failed to open file %s",filename);
+    }
+    else{
+        while(line=getline())
+        {
+            if (fscanf(line,"%s %d %s %s",&flightCode,&seatNumber,&flightTime,&flightDate) !=4){
+                continue;
+            }
+           flightPTR =Flight(flightCode,flightTime,flightDate,seatNumber);
+            m_flightByDate.insert(flightPTR);
+            m_flightByCode.insert(flightPTR);
+        }
+    }
+    
 }
 
 //get flight from the map using fight number the key
