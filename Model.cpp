@@ -30,6 +30,7 @@ Flight* Model::getFlightByCode(string _code){
 Passenger* Model::getPassengerByName(string _passenger){
     return m_passenger[_passenger];
 }
+
 //get all the flights on the given data
 vector<Flight*> Model::getFlightByDate(string _date){
     pair<multimap<string,Flight*>::iterator,multimap<string,Flight*>::iterator> dateRange;
