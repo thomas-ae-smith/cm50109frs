@@ -3,6 +3,7 @@
 #include <string.h>
 #include "Passenger.h"
 #include "Flight.h"
+#include "AbstractView.h"
 
 
 class Controller
@@ -12,27 +13,29 @@ class Controller
 private:
 //Pointers to the model and the view
     Model* m_model;
-    View* m_view;
+    AbstractView* m_view;
 
 public:
 
 //Constructor and destructor of Xontroller class
-    Controller(Model* _model, View *_view);
+    Controller(Model* _model, AbstractView *_view);
     ~Controller();
 
-//Auxiliary methods
-    bool checkAnswer(char _answer);
-
 //Methods for accessing the model
-    string makeReservation(string _name, string _number, SeatClass _class);
-    string makeCancellation(string _name, string _code);
-    vector<Flight*> makePassengerEnquiry(string _name);
-    vector <Passenger*> makeFlightEnquiry(string _code, SeatClass _class);
-    vector <Passenger*> makeFlightWaitingEnquiry(string _code, SeatClass _class);
+    void makeReservation(string _name, string _code, SeatClass _class);
+    void makeCancellation(string _name, string _code);
+    vector<Flight*> makePassengerInquiry(string _name);
+    vector <Passenger*>* makeFlightInquiry(string _code, SeatClass _class);
+    vector <Passenger*>* makeFlightWaitingInquiry(string _code, SeatClass _class);
 
 //Methods for accessing the view
     void refreshPassengers(vector<Passenger*>* _passengers);
     void refreshFlights(vector<Flight*>* _flights);
+
+//Setters and getters
+    Model* getModel();
+    AbstractView* getView();	
+
 };
 
 #endif // CONTROLLER_H

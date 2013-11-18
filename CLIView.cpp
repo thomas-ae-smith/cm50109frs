@@ -3,6 +3,20 @@
 #include <vector>
 using namespace std;
 
+
+//Check if the answer is yes or no
+bool CLIView::checkAnswer(char _answer)
+{
+   if(_answer=='y' || _answer=='Y' || _answer=='1')
+   {
+       return true;
+   }
+   else
+   {
+    return false;
+   }
+}
+
 //Display one passenger's information (name)
     void CLIView::displayPassenger(Passenger* _passenger)
     {
@@ -33,5 +47,52 @@ using namespace std;
 	{
 	 displayFlight((*it));	
 	}
+    }
+
+//Add to database
+//Reservation
+    void CLIView::makeReservationEvent(string _name, string _code, SeatClass _class)
+    {
+	m_controller->makeReservation(_name, _code, _class);
+    }
+
+//Cancellation
+    void CLIView::makeCancellationEvent(string _name, string _code)
+    {
+         m_controller->makeCancellation(_name, _code);
+    }
+
+//Get from database
+//Passenger Inquiry
+    void CLIView::makePassengerInquiryEvent(string _name)
+    {
+	displayFlights(m_controller->makePassengerInquiry(_name));
+    }
+
+//Flight Inquiry
+    void CLIView::makeFlightInquiry(string _code)
+    {
+      displayPassengers(m_controller->makeFlightInquiry(_code, SeatClass.First));
+      displayPassengers(m_controller->makeFlightWaitingInquiry(_code, SeatClass.First));
+      displayPassengers(m_controller->makeFlightInquiry(_code, SeatClass.Economy));
+      displayPassengers(m_controller->makeFlightWaitingInquiry(_code, SeatClass.Economy));
+    }
+
+
+//Auxiliary methods
+
+    bool CLIView::yesNoPopup(string _message)
+    {
+	char option;
+	cout<<_message;
+	cin>>option;
+
+	return checkAnswer(option);
+    }
+
+
+    void CLIView::popupMessage(string _message)
+    {
+	cout<<_message;
     }
     

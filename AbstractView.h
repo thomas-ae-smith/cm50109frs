@@ -3,6 +3,7 @@
 
 #include "Flight.h"
 #include "Passenger.h"
+#include <string>
 
 class AbstractView{
 
@@ -12,12 +13,10 @@ class AbstractView{
 public:
 
 //All virtual functions (do not require implementation)
-//Constructor and destructor
-    AbstractView();	
-    ~AbstractView();
-	
+
+//Displaying Information
 //Display one passenger's information (name)
-    virtual void displayPassenger(Passenger* _passenger);
+    virtual void displayPassenger(Passenger* _passenger) = 0;
 
 //Display one flight's information (code, number of seats, time and date)
     virtual void displayFlight(Flight* _flight);
@@ -27,6 +26,34 @@ public:
 
 //Display all the flights a passenger's on
     virtual void displayFlights(vector<Flight*>* _flights);
+
+
+//Methods from interface
+//Takes info from interface and delivers it to controller which then updates model
+//Messages of the actions taken will then be sent from the controller to the view
+//Once updated the model will ask the view to update
+
+//Reservation
+    virtual void makeReservationEvent(string _name, string _code, SeatClass _class);
+//Cancellation
+    virtual void makeCancellationEvent(string _name, string _code);
+//Passenger Inquiry
+    virtual void makePassengerInquiryEvent(string _name);
+//Flight Inquiry
+    virtual void makeFlightInquiry(string _code);
+
+
+//Auxiliary methods
+
+    virtual bool checkAnswer(char _answer);
+
+    virtual bool yesNoPopup(string _message);
+
+    virtual void popupMessage(string _message);
+
+
+
+
     
 };
 
