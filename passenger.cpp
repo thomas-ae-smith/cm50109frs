@@ -38,3 +38,4 @@ vector<Flight*> Passenger::getFlights()
 {
     return m_flights;
 }
+
