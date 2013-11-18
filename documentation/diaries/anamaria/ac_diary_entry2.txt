@@ -1,0 +1,20 @@
+Anamaria Ciucanu - diary entry 2
+Date: 17/11/2013
+
+- looked up MVC pattern [1]
+- created UML diagram using gliffy.com
+- finished AbstractView.h, CLIView.h
+- finished AbstractView.cpp, CLIView.cpp
+- worked on GUIView graphical interface
+- commented classes
+
+Still TO DO:
+- Finish GUIView.h, GUIView.cpp
+- write description on analysis, design and implementation of these classes
+- looked up Google Test and found methods of testing individual classes
+
+
+
+
+References:
+[1] http://www.cse.ohio-state.edu/~rountev/421/lectures/lecture23.pdf
