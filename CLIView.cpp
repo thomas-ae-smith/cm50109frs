@@ -1,7 +1,67 @@
 #include "CLIView.h"
 #include <iostream>
 #include <vector>
+#include <cctype>
+
 using namespace std;
+
+
+
+   CLIView::CLIView()
+   {
+     m_controller = NULL;
+   }
+
+   CLIView::~CLIView()
+   {
+
+   }	
+
+//Help
+	void CLIView::help()
+	{
+		//Prints out the list of available commands
+	}
+
+//CLI prompt methods
+	void CLIView::reservationPrompt(string _reservation);
+	void CLIView::cancellationPrompt(string _cancellation);
+	void CLIView::passengerInqPrompt(string _passengerInq);
+	void CLIView::flightInqPrompt(string _flightInq);
+
+
+
+//Starting point
+ void CLIView::start()
+ {
+	while(true)
+	{
+	 string option;
+	 cout<<"Type in help for a list of the available commands" <<endl;
+	 cin>>option;
+
+	switch(tolower(option[0])):
+	{
+		case 'r':
+			reservationPrompt(option);
+			break;
+		case 'c':
+			cancellationPrompt(option);
+			break;
+		case 'p':
+			passengerInqPrompt(option);
+			break;
+		case 'f':
+			flightInqPrompt(option);
+			break;
+		default:
+			help();
+			break;			
+	}
+
+		//break;
+	}
+ }
 
 
 //Check if the answer is yes or no
@@ -95,4 +155,15 @@ bool CLIView::checkAnswer(char _answer)
     {
 	cout<<_message;
     }
+
+
+    void Controller::setController(Controller* _controller)
+    {
+       m_controller = _controller;
+    }
+
+    Controller* Controller::getController()
+   {
+	return m_controller;
+   }
     

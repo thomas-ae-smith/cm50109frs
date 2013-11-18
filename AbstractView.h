@@ -14,9 +14,16 @@ public:
 
 //All virtual functions (do not require implementation)
 
+	
+//Help
+	virtual void help() = 0;
+
+//Starting point
+	virtual void start();
+
 //Displaying Information
 //Display one passenger's information (name)
-    virtual void displayPassenger(Passenger* _passenger) = 0;
+    virtual void displayPassenger(Passenger* _passenger);
 
 //Display one flight's information (code, number of seats, time and date)
     virtual void displayFlight(Flight* _flight);
