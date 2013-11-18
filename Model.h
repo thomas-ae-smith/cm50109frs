@@ -11,11 +11,13 @@
 //this is the class for storing data of passenger and flight using map and multimap
 class Model {
 	private:
-        Model(string);
+        Model();
+        Model(String);
 		map<String,Passenger*> m_passengers;
 		map<String,Flight*> m_flightByCode;
 		multimap<String,Flight*> m_flightByDate;
 		static model* s_model;
+        static String s_filename="FCGDATA";
 
 	public:
         static Model* getModel();
