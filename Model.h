@@ -11,7 +11,7 @@
 //this is the class for storing data of passenger and flight using map and multimap
 class Model {
 	private:
-        Model();
+        Model(string);
 		map<String,Passenger*> m_passengers;
 		map<String,Flight*> m_flightByCode;
 		multimap<String,Flight*> m_flightByDate;
@@ -22,4 +22,6 @@ class Model {
 		Passenger* getPassengerByName(string _passenger);
 		Flight* getFlightByCode(string _code);
 		vector<Flight*> getFlightsByDate(string _date);
+
 };
+
