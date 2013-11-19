@@ -7,17 +7,21 @@
 //
 
 #include <string>
-
+#include <vector>
+#include <map>
+#include "Passenger.h"
+#include "Flight.h"
+using namespace std;
 //this is the class for storing data of passenger and flight using map and multimap
 class Model {
 	private:
         Model();
-        Model(String);
-		map<String,Passenger*> m_passengers;
-		map<String,Flight*> m_flightByCode;
-		multimap<String,Flight*> m_flightByDate;
-		static model* s_model;
-        static String s_filename="FCGDATA";
+        Model(string _filename);
+		map<string,Passenger*> m_passengers;
+		map<string,Flight*> m_flightByCode;
+		multimap<string,Flight*> m_flightByDate;
+		static Model* s_model;
+        static string s_filename="FCGDATA";
 
 	public:
         static Model* getModel();
