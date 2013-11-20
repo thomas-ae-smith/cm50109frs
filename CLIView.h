@@ -2,7 +2,7 @@
 
 //Command line View class
 
-class CLIView: public class AbstractView
+class CLIView: public AbstractView
 {
 //This is an abstract interface for the view
 //Different types of views will inherit from this class and implement their own methods
