@@ -150,7 +150,7 @@ void Controller::makeCancellation(string _name, string _code)
     }
 }
 
-vector<Flight*> Controller::makePassengerInquiry(string _name)
+vector<Flight*>* Controller::makePassengerInquiry(string _name)
 {
   //Gets the flights the passenger is on
 
@@ -159,7 +159,7 @@ vector<Flight*> Controller::makePassengerInquiry(string _name)
 
   if(auxPassenger)
   {
-      return auxPassenger->getFlights();
+      return &(auxPassenger->getFlights());
   }
   else
   {

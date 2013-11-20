@@ -1,0 +1,26 @@
+Meeting 3
+
+
+1) Done:
+ 
+ Pair programming
+	Emily and Ana - finished writing the Controller.h and Controller.cpp files
+		      - modified the AbstractView.h, CLIView.h and CLIView.cpp files   	
+	Lily and Tom  - finished writing the Model.h and Model.cpp files
+
+2) Next meeting - monday 10:15 EB
+ 
+3) To Do:
+
+- Lookup Google testing and other methods of testing your classes
+- Refine/finish your classes by monday
+- Comment your code
+- Write a few lines on the design, analysis and chosen implementation for your class(es)
+
+
+4) Milestones:
+Week 8 - integration of code and have a first working version of the program
+       - do some initial testing	
+
+
+

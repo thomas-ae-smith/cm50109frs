@@ -24,7 +24,7 @@ public:
 //Methods for accessing the model
     void makeReservation(string _name, string _code, SeatClass _class);
     void makeCancellation(string _name, string _code);
-    vector<Flight*> makePassengerInquiry(string _name);
+    vector<Flight*>* makePassengerInquiry(string _name);
     vector <Passenger*>* makeFlightInquiry(string _code, SeatClass _class);
     vector <Passenger*>* makeFlightWaitingInquiry(string _code, SeatClass _class);
 

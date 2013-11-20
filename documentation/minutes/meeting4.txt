@@ -1,0 +1,10 @@
+Meeting 4
+20/11/2013
+
+Flash meeting on things left to do and questions on issues
+
+- next meeting on friday, 22/11/2013
+- discussed outline of documentation files 
+- talked about cleaning and refining the source files together on friday
+- questions were asked on the idea of abstraction -> see slides on data abstraction on moodle
+
