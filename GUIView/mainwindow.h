@@ -29,11 +29,20 @@ private slots:
 
 
 
+    void on_flightInquiry_clicked();
+
+    void on_refreshButton_clicked();
+
+    void on_passengerInquiry_clicked();
+
 private:
     Ui::MainWindow *ui;
     AbstractView* m_view;
 };
 
 #endif // MAINWINDOW_H
+
+
+
 
 

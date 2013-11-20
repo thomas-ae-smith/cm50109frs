@@ -163,3 +163,19 @@ void MainWindow::on_economyRadio_clicked()
 }
 
 
+
+void MainWindow::on_flightInquiry_clicked()
+{
+
+}
+
+
+void MainWindow::on_refreshButton_clicked()
+{
+    m_view->refresh();
+}
+
+void MainWindow::on_passengerInquiry_clicked()
+{
+
+}

@@ -1,9 +1,10 @@
 #ifndef GUIVIEW_H
 #define GUIVIEW_H
 #include "AbstractView.h"
-class Controller;
+#include <map>
 #include "mainwindow.h"
 
+class Controller;
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +23,9 @@ public:
     //Starting point
     void start();
 
+    //Refresh
+    void refresh();
+
     //Displaying Information
     //Display one passenger's information (name)
     void displayPassenger(Passenger* _passenger);
@@ -31,10 +35,11 @@ public:
 
     //Display all the passengers on a flight, either waiting or in one of the available classes (first, economy)
     void displayPassengers(vector<Passenger*>* _passengers);
+    void displayPassengers(map<string, Passenger*>* _passengers);
 
     //Display all the flights a passenger's on
     void displayFlights(vector<Flight*>* _flights);
-
+    void displayFlights(map<string, Flight*>* _flights);
 
     //Methods from interface
     //Takes info from interface and delivers it to controller which then updates model
