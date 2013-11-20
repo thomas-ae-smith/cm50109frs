@@ -9,11 +9,11 @@
 #include "model.h"
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include "Flight.h"
 
 using namespace std;
-
 //Use model to store the data of passengers and flights
 //Using Singlteton pattern here to keep only one instance of Model
 Model::Model getModel(){
@@ -24,28 +24,30 @@ Model::Model getModel(){
     return s_model;
 }
 
-Model::Model(String filename){
-    FILE* pFile;
+Model::Model(string filename){
     string line;
     string flightCode;
-    int seatNumber;
+    int seats;
     string flightTime;
     string flightDate;
-    Flight* flightPTR;
-    pFile=fopen("filename","w+");
-    if (pFile=NULL) {
-        printf("Failed to open file %s",filename);
-    }
+    //ofstream constructor opens file
+    ifstream inFilghtFile;
+    inFlightFile.open(filename,ios::in);
+    if (!inFilghtFile) {
+        cerr<<"Failed to open file,please check" << endl;
+        exit(1);
+    }//end if
     else{
-        while(line=getline())
+        while(getline(inFilghtFile,line))//why no EOF?
         {
             if (fscanf(line,"%s %d %s %s",&flightCode,&seatNumber,&flightTime,&flightDate) !=4){
                 continue;
             }
-           flightPTR =Flight(flightCode,flightTime,flightDate,seatNumber);
+            Flight::Flight(flightCode,flightTime,flightDate,seats);
             m_flightByDate.insert(flightPTR);
             m_flightByCode.insert(flightPTR);
         }
+        inFlightFile.close();
     }
     
 }
@@ -65,7 +67,7 @@ vector<Flight*> Model::getFlightByDate(string _date){
     dateRange=m_flightByDate.equal_range(_date);
     for(multimap<string,Flight*>::iterator it=dateRange.first;it!=dateRange.second;++it)
     {
-     m_flightByDate.push_back(dataRange.second);
+     m_flightByDate.insert(it);
     }
     return m_flightByDate;
 }
