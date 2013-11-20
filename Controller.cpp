@@ -43,6 +43,7 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
         {
             //There are seats left, we add the passenger
             auxFlight->addPassenger(auxPassenger, _class);
+			auxPassenger->addFlight(auxFlight);
 	    m_view->dialogMessage("Success, you were added on the flight!");
         }
         else
@@ -60,12 +61,14 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
                     if(m_view->yesNoDialog("Would you like a seat in the economy class? y/n"))
                     {
                         auxFlight->addPassenger(auxPassenger, Flight.SeatClass.Economy);
+						auxPassenger->addFlight(auxFlight);
                     }
                     else
                     {
                         if(m_view->yesNoDialog("Would you like to be added on the First class waiting list? y/n"))
                         {
                             auxFlight->addPassenger(auxPassenger, Flight.SeatClass.First);
+							auxPassenger->addFlight(auxFlight);
                         }
                         else
                         {
@@ -80,6 +83,7 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
                     if(m_view->yesNoDialog("Would you like to be added on the First class waiting list? y/n"))
                     {
                        auxFlight->addPassenger(auxPassenger, Flight.SeatClass.First);
+					   auxPassenger->addFlight(auxFlight);
                     }
                     else
                     {
@@ -87,6 +91,7 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
                        if(m_view->yesNoDialog("Would you like to be added on the Economy class waiting list? y/n"))
                        {
                          auxFlight->addPassenger(auxPassenger, Flight.SeatClass.Economy);
+						 auxPassenger->addFlight(auxFlight);
                        }
                        else
                        {
@@ -101,6 +106,7 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
                 if(m_view->yesNoDialog("There are no seats available.  Would you like to be put on the waiting list? y/n"))
                 {
                      auxFlight->addPassenger(auxPassenger, Flight.SeatClass.Economy);
+					 auxPassenger->addFlight(auxFlight);
                 }
 
                 else
