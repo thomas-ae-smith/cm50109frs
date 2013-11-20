@@ -32,6 +32,9 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
     //Check for availability of flight and existence of passenger
     if ((auxFlight != NULL) && (auxPassenger != NULL))
     {
+
+	//CHECK! - if person is trying to book a flight on the same day as another flight he is booked on!!!
+
         //checks the flight options and puts the passenger on a waiting list if needed
         int check = auxFlight->getSeatAvailability(_class);
         char option;
@@ -40,7 +43,7 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
         {
             //There are seats left, we add the passenger
             auxFlight->addPassenger(auxPassenger, _class);
-	    m_view->popupMessage("Success, you were added on the flight!");
+	    m_view->dialogMessage("Success, you were added on the flight!");
         }
         else
         {
@@ -48,46 +51,46 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
             if(_class == Flight.SeatClass.First)
             {
                 //If the class is first, we offer the economy option
-                m_view->popupMessage("There are no more seats left in the first class.");
+                m_view->dialogMessage("There are no more seats left in the first class.");
 	
                 check = auxFlight->getSeatAvailability(Flight.SeatClass.Economy);
                 if(check>0)
                 {
 
-                    if(m_view->yesNoPopup("Would you like a seat in the economy class? y/n"))
+                    if(m_view->yesNoDialog("Would you like a seat in the economy class? y/n"))
                     {
                         auxFlight->addPassenger(auxPassenger, Flight.SeatClass.Economy);
                     }
                     else
                     {
-                        if(m_view->yesNoPopup("Would you like to be added on the First class waiting list? y/n"))
+                        if(m_view->yesNoDialog("Would you like to be added on the First class waiting list? y/n"))
                         {
                             auxFlight->addPassenger(auxPassenger, Flight.SeatClass.First);
                         }
                         else
                         {
-                           m_view->popupMessage("You were not added to the " + auxFlight->getCode() + ", thank you!");
+                           m_view->dialogMessage("You were not added to the " + auxFlight->getCode() + ", thank you!");
                         }
                     }
                 }
                 else //There are no seats in either first or economy classes
                 {
-                    m_view->popupMessage("There are no seats in either first or economy classes. ");
+                    m_view->dialogMessage("There are no seats in either first or economy classes. ");
  
-                    if(m_view->yesNoPopup("Would you like to be added on the First class waiting list? y/n"))
+                    if(m_view->yesNoDialog("Would you like to be added on the First class waiting list? y/n"))
                     {
                        auxFlight->addPassenger(auxPassenger, Flight.SeatClass.First);
                     }
                     else
                     {
 
-                       if(m_view->yesNoPopup("Would you like to be added on the Economy class waiting list? y/n"))
+                       if(m_view->yesNoDialog("Would you like to be added on the Economy class waiting list? y/n"))
                        {
                          auxFlight->addPassenger(auxPassenger, Flight.SeatClass.Economy);
                        }
                        else
                        {
-                           m_view->popupMessage("You were not added to either waiting list.");
+                           m_view->dialogMessage("You were not added to either waiting list.");
                        }
                     }
                 }
@@ -95,14 +98,14 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
 
             else //The class of unavailable seats is economy
             {
-                if(m_view->yesNoPopup("There are no seats available.  Would you like to be put on the waiting list? y/n"))
+                if(m_view->yesNoDialog("There are no seats available.  Would you like to be put on the waiting list? y/n"))
                 {
                      auxFlight->addPassenger(auxPassenger, Flight.SeatClass.Economy);
                 }
 
                 else
                 {
-                    m_view->popupMessage("You were not added to the list. Thank you.");
+                    m_view->dialogMessage("You were not added to the list. Thank you.");
                 }
 
 
@@ -133,7 +136,7 @@ void Controller::makeCancellation(string _name, string _code)
 
         //Remove flight from passenger
         auxPassenger->removeFlight(auxFlight);
-	m_view->popupMessage("Success, you were removed from the flight!");
+	m_view->dialogMessage("Success, you were removed from the flight!");
     }
     else
     {
