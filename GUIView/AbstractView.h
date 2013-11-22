@@ -1,8 +1,14 @@
 #ifndef ABSTRACTVIEW_H
 #define ABSTRACTVIEW_H
 
-#include "Model.h"
+class Flight;
+class Passenger;
+class SeatClass;
+
 #include <string>
+#include <vector>
+
+using namespace std;
 
 class AbstractView{
 
@@ -18,23 +24,20 @@ public:
 	virtual void help() = 0;
 
 //Starting point
-	virtual void start() = 0;
-
-//Refresh
-    virtual void refresh() = 0;    
+	virtual void start();
 
 //Displaying Information
 //Display one passenger's information (name)
-    virtual void displayPassenger(Passenger* _passenger) = 0;
+    virtual void displayPassenger(Passenger* _passenger);
 
 //Display one flight's information (code, number of seats, time and date)
-    virtual void displayFlight(Flight* _flight) = 0;
+    virtual void displayFlight(Flight* _flight);
     
 //Display all the passengers on a flight, either waiting or in one of the available classes (first, economy)
-    virtual void displayPassengers(vector<Passenger*>* _passengers) = 0;
+    virtual void displayPassengers(vector<Passenger*>* _passengers);    
 
 //Display all the flights a passenger's on
-    virtual void displayFlights(vector<Flight*>* _flights) = 0;
+    virtual void displayFlights(vector<Flight*>* _flights);
 
 
 //Methods from interface
@@ -43,22 +46,25 @@ public:
 //Once updated the model will ask the view to update
 
 //Reservation
-    virtual void makeReservationEvent(string _name, string _code, SeatClass _class) = 0;
+    virtual void makeReservationEvent(string _name, string _code, SeatClass _class);
 //Cancellation
-    virtual void makeCancellationEvent(string _name, string _code) = 0;
+    virtual void makeCancellationEvent(string _name, string _code);
 //Passenger Inquiry
-    virtual void makePassengerInquiryEvent(string _name) = 0;
+    virtual void makePassengerInquiryEvent(string _name);
 //Flight Inquiry
-    virtual void makeFlightInquiry(string _code) = 0;
+    virtual void makeFlightInquiry(string _code);
 
 
 //Auxiliary methods
 
-    virtual bool checkAnswer(char _answer) = 0;
+    virtual bool checkAnswer(char _answer);
 
-    virtual bool yesNoDialog(string _message) = 0;
+    virtual bool yesNoDialog(string _message);
 
-    virtual void dialogMessage(string _message) = 0;
+    virtual void dialogMessage(string _message);
+
+
+
 
     
 };

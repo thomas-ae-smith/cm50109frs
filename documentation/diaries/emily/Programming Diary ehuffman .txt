@@ -18,5 +18,9 @@ Nov 14 - Thursday
 -modified View with Anamaria. 
 -modified Passenger deconstructor; finished.
 
-Nov 16 - Sunday
+Nov 17 - Sunday
 -Began writing tentative design for Passenger class.
+
+Nov 18 - Monday
+-Peer programmed Model class with Lily. 
+-Added file-reading (of flight data) to Model with Lily.

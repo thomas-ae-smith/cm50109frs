@@ -1,0 +1,15 @@
+previous days diary to be added
+12.18 
+group meeting. add functionality to read file contains the flight information.
+read how to implement read ,open using ifstream.
+
+12.19
+download google test source and .add framework to the project.
+stuck at the add shell tool target step
+so turn to using Xcode unit test bundle. correct some errors  and commit
+fail to import the existing cm50109frs repository to Xcode. search approaches quite a long time on internet but no right results.
+read examples how the unit test runs,basically assert .also mock object
+
+
+12.20 
+group meeting. figure out what to do next at the friday meeting.reading documentation requirement.
