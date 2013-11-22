@@ -1,65 +1,62 @@
 #include "CLIView.h"
 #include <iostream>
-#include <vector>
 #include <cctype>
 
 using namespace std;
-
-
 
 CLIView::CLIView() {
 	m_controller = NULL;
 }
 
 CLIView::~CLIView() {}
-
 //Help
 void CLIView::help() {
 	//Prints out the list of available commands
 }
-
 //CLI prompt methods
-void CLIView::reservationPrompt(string _reservation);
-void CLIView::cancellationPrompt(string _cancellation);
-void CLIView::passengerInqPrompt(string _passengerInq);
-void CLIView::flightInqPrompt(string _flightInq);
-
-
+void CLIView::reservationPrompt(string _reservation) {}
+void CLIView::cancellationPrompt(string _cancellation) {}
+void CLIView::passengerInqPrompt(string _passengerInq) {}
+void CLIView::flightInqPrompt(string _flightInq) {}
 
 //Starting point
 void CLIView::start() {
-	while(true) {
+	bool quit = false;
+	while(!quit) {
 		string option;
 		cout << "FRS>: ";
 		cin >> option;
-
-	switch(tolower(option[0])): {
-		case 'r':
-			reservationPrompt(option);
-			break;
-		case 'c':
-			cancellationPrompt(option);
-			break;
-		case 'p':
-			passengerInqPrompt(option);
-			break;
-		case 'f':
-			flightInqPrompt(option);
-			break;
-		default:
-			cout << "Unrecognised command: " << option << endl;
-			help();
-			break;
-	}
-
-		//break;
+		switch(tolower(option[0])): {
+			case 'r':
+				reservationPrompt(option);
+				break;
+			case 'c':
+				cancellationPrompt(option);
+				break;
+			case 'p':
+				passengerInqPrompt(option);
+				break;
+			case 'f':
+				flightInqPrompt(option);
+				break;
+					case 'e':
+				quit = true;
+				break;
+					case '?':
+					case 'h':
+				help();
+				break;
+			default:
+				cout << "Unrecognised command: " << option << endl;
+				help();
+				break;
+		}
 	}
 }
 
-
 //Check if the answer is yes or no
 bool CLIView::checkAnswer(char _answer) {
-	if(_answer=='y' || _answer=='Y' || _answer=='1') {
+	if(tolower(_answer[0])=='y' || _answer=='1') {
 		return true;
 	}
 	else
@@ -135,7 +132,6 @@ void CLIView::dialogMessage(string _message) {
 	cout << _message;
 }
 
-
 void Controller::setController(Controller* _controller) {
 	 m_controller = _controller;
 }
@@ -143,4 +139,3 @@ void Controller::setController(Controller* _controller) {
 Controller* Controller::getController() {
 	return m_controller;
 }
-

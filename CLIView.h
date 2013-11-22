@@ -1,24 +1,31 @@
+#ifndef CLIVIEW_H
+#define CLIVIEW_H
 #include "AbstractView.h"
+#include <vector>
 
 //Command line View class
 
-class CLIView: public class AbstractView
+class CLIView: public AbstractView
 {
 //This is an abstract interface for the view
 //Different types of views will inherit from this class and implement their own methods
 
 public:
 
-   CLIView();
-   ~CLIView();	
-
+//Constructor
+    CLIView();
+//Destructor
+    ~CLIView();
 	
 //Help
-void help();
+    void help();
 
 //Starting point
- void start();
+    void start();
 
+//Refresh
+    void refresh();
+    
 //Display one passenger's information (name)
     void displayPassenger(Passenger* _passenger);
 
@@ -32,14 +39,10 @@ void help();
     void displayFlights(vector<Flight*>* _flights);   
 
 //CLI prompt methods
-
 	void reservationPrompt(string _reservation);
 	void cancellationPrompt(string _cancellation);
 	void passengerInqPrompt(string _passengerInq);
 	void flightInqPrompt(string _flightInq);
-
-	
-
 
 //Reservation
     void makeReservationEvent(string _name, string _code, SeatClass _class);
@@ -62,3 +65,5 @@ void help();
 private:
     Controller* m_controller;
 };
+
+#endif // CLIVIEW_H
