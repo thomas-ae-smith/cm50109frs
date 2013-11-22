@@ -57,12 +57,14 @@ Passenger* Model::addPassenger(string _name) {
     return m_passenger.insert(_name, new Passenger(_name));
 }
 
-void Model::addReservation(string _name, string _code) {
+void Model::addReservation(string _name, string _code, Flight::SeatClass _class) {
     Flight* flight = getFlightByCode(_code);
     Passenger* passenger = getPassengerByName(_name);
     if (passenger == nullptr) {
         passenger = addPassenger(_name);
     }
+    flight->addPassenger(passenger, _class);
+    passenger->addFlight(flight);
 }
 
 //Get all the flights on the given date

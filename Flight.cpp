@@ -1,21 +1,17 @@
-/* Flight.cpp
- */
-
-#include <string>
 #include "Flight.h"
 
 using namespace std;
 
 
 // create a flight with input parameters
-Flight::Flight(string _number, string _time, string _date, int _seatTotal) {
-	this.m_number = _number;
-	this.m_time = _time;
-	this.m_date = _date;
-	this.m_seatnumbers[SeatClass.First] = 0.1 * _seatTotal;
-	this.m_seatnumbers[SeatClass.Economy] = 0.9 * _seatTotal;
-	this.m_seatlist[SeatClass.First] = new vector<passenger*>();
-	this.m_seatlist[SeatClass.Economy] = new vector<passenger*>();
+Flight::Flight(string _code, string _time, string _date, int _seatTotal) {
+	this->m_code = _code;
+	this->m_time = _time;
+	this->m_date = _date;
+	this->m_seatnumbers[SeatClass.First] = (int)floor(0.1 * _seatTotal);
+	this->m_seatnumbers[SeatClass.Economy] = _seatTotal - (int)floor(0.1 * _seatTotal);
+	this->m_seatlist[SeatClass.First] = new vector<Passenger*>();
+	this->m_seatlist[SeatClass.Economy] = new vector<Passenger*>();
 }
 
 // free the memory allocated for the new vectors
@@ -64,7 +60,7 @@ vector<Passenger*> Flight::getWaiting(SeatClass _class) {
 }
 
 
-// string m_number;
+// string m_code;
 // string m_date;
 // string m_time;
 // int[] m_seatnumbers;
