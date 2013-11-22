@@ -21,7 +21,7 @@ and remove the makeFlightWaitingInq method from the class
 8. Create isWaiting methods for the flight and passenger to return if a passenger is waiting and which flights he is waiting on
 9. Check if the passenger is attempting to book more than one flight on the same day (Controller's responsibility)
 10. When making a reservation, if a passenger doesn't exist in the database, he should be created (Model's responsibility)
-
+11. Finish the CLIView and GUIView classes :D
 
 Next meeting:
 Monday, the 25th of November, 10:10 am
