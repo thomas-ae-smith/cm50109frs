@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F9ED64A3183F9AF300B95734 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F9ED64A2183F9AF300B95734 /* main.cpp */; };
 		F9FE1CE5183C295800DD0815 /* CLIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F9FE1CDB183C295800DD0815 /* CLIView.cpp */; };
 		F9FE1CE6183C295800DD0815 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F9FE1CDD183C295800DD0815 /* Controller.cpp */; };
 		F9FE1CE7183C295800DD0815 /* Flight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F9FE1CDF183C295800DD0815 /* Flight.cpp */; };
@@ -27,6 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F9ED64A2183F9AF300B95734 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 		F9FE1CCE183C290200DD0815 /* cm50109frs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cm50109frs; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9FE1CDA183C295800DD0815 /* AbstractView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractView.h; sourceTree = SOURCE_ROOT; };
 		F9FE1CDB183C295800DD0815 /* CLIView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLIView.cpp; sourceTree = SOURCE_ROOT; };
@@ -71,6 +73,7 @@
 		F9FE1CD0183C290200DD0815 /* cm50109frs */ = {
 			isa = PBXGroup;
 			children = (
+				F9ED64A2183F9AF300B95734 /* main.cpp */,
 				F9FE1CDA183C295800DD0815 /* AbstractView.h */,
 				F9FE1CDB183C295800DD0815 /* CLIView.cpp */,
 				F9FE1CDC183C295800DD0815 /* CLIView.h */,
@@ -139,6 +142,7 @@
 			files = (
 				F9FE1CE9183C295800DD0815 /* Passenger.cpp in Sources */,
 				F9FE1CE5183C295800DD0815 /* CLIView.cpp in Sources */,
+				F9ED64A3183F9AF300B95734 /* main.cpp in Sources */,
 				F9FE1CE6183C295800DD0815 /* Controller.cpp in Sources */,
 				F9FE1CE7183C295800DD0815 /* Flight.cpp in Sources */,
 				F9FE1CE8183C295800DD0815 /* Model.cpp in Sources */,

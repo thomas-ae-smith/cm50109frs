@@ -28,10 +28,6 @@ public:
 	vector <Passenger*>* makeFlightInquiry(string _code, SeatClass _class);
 	vector <Passenger*>* makeFlightWaitingInquiry(string _code, SeatClass _class);
 
-//Methods for accessing the view
-	void refreshPassengers(vector<Passenger*>* _passengers);
-	void refreshFlights(vector<Flight*>* _flights);
-
 //Setters and getters
 	Model* getModel();
 	AbstractView* getView();

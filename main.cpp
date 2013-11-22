@@ -1,4 +1,9 @@
-void main()
+#include "Model.h"
+#include "Controller.h"
+#include "AbstractView.h"
+#include "CLIView.h"
+
+int main()
 {
 	//Create model - populate with flights (sorted by code and date)
 	//Create view
@@ -12,8 +17,8 @@ void main()
 	Model* FRSModel = Model::getModel();
 	AbstractView* FRSView = new CLIView();
 	Controller* FRSController = new Controller(FRSModel, FRSView);
-	FRSView.setController(FRSController);
-
+	FRSView->setController(FRSController);
+	FRSView->start();
 
 	//Reservation
 	//Create/Select a passenger
