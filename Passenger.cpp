@@ -28,7 +28,7 @@ void Passenger::removeFlight(Flight* _flight) {
 }
 
 //Return all of the flights TODO: get waiting (and class?) status
-vector<Flight*> Passenger::getFlights() {
-    return m_flights;
+vector<Flight*>* Passenger::getFlights() {
+    return &m_flights;
 }
 
