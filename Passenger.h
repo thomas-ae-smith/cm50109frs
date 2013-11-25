@@ -32,7 +32,7 @@ public:
 //removes a flight from the passenger's list of flights
 	void removeFlight(Flight* _flight);
 //returns the passenger's list of flights
-	vector<Flight*> getFlights();
+	vector<Flight*>* getFlights();
 
 };
 

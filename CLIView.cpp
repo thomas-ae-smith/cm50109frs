@@ -1,6 +1,7 @@
 #include "CLIView.h"
 #include <iostream>
 #include <cctype>
+#include "Controller.h"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ void CLIView::start() {
 		string option;
 		cout << "FRS>: ";
 		cin >> option;
-		switch(tolower(option[0])): {
+		switch(tolower(option[0])) {
 			case 'r':
 				reservationPrompt(option);
 				break;
@@ -56,7 +57,7 @@ void CLIView::start() {
 
 //Check if the answer is yes or no
 bool CLIView::checkAnswer(char _answer) {
-	if(tolower(_answer[0])=='y' || _answer=='1') {
+	if(tolower(_answer)=='y' || _answer=='1') {
 		return true;
 	}
 	else
@@ -72,13 +73,13 @@ void CLIView::displayPassenger(Passenger* _passenger) {
 
 //Display one flight's information (code, number of seats, time and date)
 void CLIView::displayFlight(Flight* _flight) {
-	cout << _flight->getName() << endl;
+	cout << _flight->getCode() << endl;
 }
 
 //Display all the passengers on a flight, either waiting or in one of the available classes (first, economy)
-void CLIView::displayPassengers(vector<Passenger*>* _passengers) {
+void CLIView::displayPassengers(pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* _passengers) {
 	vector<Passenger*>::iterator it;
-	for (it = (*_passengers).begin(); it != (*_passengers).end(); it++) {
+	for (it = _passengers->first; it != _passengers->second; it++) {
 		displayPassenger((*it));
 	}
 }
@@ -93,7 +94,7 @@ void CLIView::displayFlights(vector<Flight*>* _flights) {
 
 //Add to database
 //Reservation
-void CLIView::makeReservationEvent(string _name, string _code, SeatClass _class) {
+void CLIView::makeReservationEvent(string _name, string _code, Flight::SeatClass _class) {
 	m_controller->makeReservation(_name, _code, _class);
 }
 
@@ -111,10 +112,10 @@ void CLIView::makePassengerInquiryEvent(string _name) {
 
 //Flight Inquiry
 void CLIView::makeFlightInquiry(string _code) {
-	displayPassengers(m_controller->makeFlightInquiry(_code, SeatClass.First));
-	displayPassengers(m_controller->makeFlightWaitingInquiry(_code, SeatClass.First));
-	displayPassengers(m_controller->makeFlightInquiry(_code, SeatClass.Economy));
-	displayPassengers(m_controller->makeFlightWaitingInquiry(_code, SeatClass.Economy));
+	displayPassengers(m_controller->makeFlightInquiry(_code, Flight::First));
+	displayPassengers(m_controller->makeFlightWaitingInquiry(_code, Flight::First));
+	displayPassengers(m_controller->makeFlightInquiry(_code, Flight::Economy));
+	displayPassengers(m_controller->makeFlightWaitingInquiry(_code, Flight::Economy));
 }
 
 
@@ -132,10 +133,12 @@ void CLIView::dialogMessage(string _message) {
 	cout << _message;
 }
 
-void Controller::setController(Controller* _controller) {
+void CLIView::setController(Controller* _controller) {
 	 m_controller = _controller;
 }
 
-Controller* Controller::getController() {
+Controller* CLIView::getController() {
 	return m_controller;
 }
+
+void CLIView::refresh() {}
