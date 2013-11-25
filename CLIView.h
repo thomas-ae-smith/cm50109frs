@@ -33,7 +33,7 @@ public:
     void displayFlight(Flight* _flight);
     
 //Display all the passengers on a flight, either waiting or in one of the available classes (first, economy)
-    void displayPassengers(vector<Passenger*>* _passengers);    
+    void displayPassengers(pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* _passengers);    
 
 //Display all the flights a passenger's on
     void displayFlights(vector<Flight*>* _flights);   
@@ -45,7 +45,7 @@ public:
 	void flightInqPrompt(string _flightInq);
 
 //Reservation
-    void makeReservationEvent(string _name, string _code, SeatClass _class);
+    void makeReservationEvent(string _name, string _code, Flight::SeatClass _class);
 //Cancellation
     void makeCancellationEvent(string _name, string _code);
 //Passenger Inquiry

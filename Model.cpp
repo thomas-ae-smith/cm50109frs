@@ -2,14 +2,18 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <cstdio>
+
 
 using namespace std;
 
+const string Model::s_filename = "FCGDATA";
+
 //Use model to store the data of passengers and flights
 //Using Singlteton pattern here to keep only one instance of Model
-Model::Model getModel(){
+Model* Model::getModel(){
     if(s_model == nullptr){
-        s_model = Model();
+        s_model = new Model();
     }
     return s_model;
 }
@@ -17,7 +21,7 @@ Model::Model getModel(){
 Model::Model(){
     string line;
     int seats;
-    string flightCode, flightTime, flightDate;
+    char flightCode[16], flightTime[16], flightDate[16];
     //ofstream constructor opens file
     ifstream inFlightFile;
     inFlightFile.open(s_filename, ios::in);
@@ -28,13 +32,13 @@ Model::Model(){
     else {
         while(getline(inFlightFile, line))
         {
-            if (fscanf(line, "%s %d %s %s", &flightCode, &seatNumber, &flightTime, &flightDate) !=4){
+            if (sscanf(line.c_str(), "%s %d %s %s", flightCode, &seats, flightTime, flightDate) !=4){
                 cerr << "Found problem on line: \'" << line << "\', skipping." << endl;
                 continue;
             }
             Flight* flightPTR = new Flight(flightCode, flightTime, flightDate, seats);
-            m_flightByCode.insert(flightCode, flightPTR);
-            m_flightByDate.insert(flightDate, flightPTR);
+            m_flightByCode.insert(pair<string,Flight*>(flightCode, flightPTR));
+            m_flightByDate.insert(pair<string,Flight*>(flightDate, flightPTR));
         }
         inFlightFile.close();
     }
@@ -49,12 +53,14 @@ Flight* Model::getFlightByCode(string _code){
 //Get passenger from the map using passenger name as the key
 Passenger* Model::getPassengerByName(string _passenger){
     //TODO create passenger if not extant
-    return m_passenger[_passenger];
+    return m_passengers[_passenger];
 }
 
 //Creates a new passenger from the given name, and adds it to the map
 Passenger* Model::addPassenger(string _name) {
-    return m_passenger.insert(_name, new Passenger(_name));
+    Passenger* added = new Passenger(_name);
+    m_passengers.insert(pair<string,Passenger*>(_name, added));
+    return added;
 }
 
 void Model::addReservation(string _name, string _code, Flight::SeatClass _class) {
@@ -68,7 +74,7 @@ void Model::addReservation(string _name, string _code, Flight::SeatClass _class)
 }
 
 //Get all the flights on the given date
-vector<Flight*> Model::getFlightByDate(string _date){
+vector<Flight*> Model::getFlightsByDate(string _date){
     //Pair structure of iterators, which will represent the first and the last occurences of the date
     pair<multimap<string,Flight*>::iterator,multimap<string,Flight*>::iterator> dateRange;
 

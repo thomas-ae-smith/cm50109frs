@@ -14,7 +14,7 @@ Controller::~Controller()
 
 
 
-void Controller::makeReservation(string _name, string _code, SeatClass _class)
+void Controller::makeReservation(string _name, string _code, Flight::SeatClass _class)
 {
     //Adds a person on a flight
 
@@ -30,7 +30,6 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
 
         //checks the flight options and puts the passenger on a waiting list if needed
         int check = auxFlight->getSeatAvailability(_class);
-        char option;
 
         if(check>0)
         {
@@ -42,12 +41,12 @@ void Controller::makeReservation(string _name, string _code, SeatClass _class)
         else
         {
             //There aren't any seats left in that class
-            if(_class == Flight.SeatClass.First)
+            if(_class == Flight::First)
             {
                 //If the class is first, we offer the economy option
                 m_view->dialogMessage("There are no more seats left in the first class.");
 	
-                check = auxFlight->getSeatAvailability(Flight.SeatClass.Economy);
+                check = auxFlight->getSeatAvailability(Flight::Economy);
                 if(check>0)
                 {
 
@@ -153,7 +152,7 @@ vector<Flight*>* Controller::makePassengerInquiry(string _name)
 
   if(auxPassenger)
   {
-      return &(auxPassenger->getFlights());
+      return auxPassenger->getFlights();
   }
   else
   {
@@ -162,7 +161,7 @@ vector<Flight*>* Controller::makePassengerInquiry(string _name)
   }
 }
 
-vector<Passenger*>* Controller::makeFlightInquiry(string _code, SeatClass _class)
+pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* Controller::makeFlightInquiry(string _code, Flight::SeatClass _class)
 {
   //Gets the passengers on a flight
 
@@ -170,7 +169,7 @@ vector<Passenger*>* Controller::makeFlightInquiry(string _code, SeatClass _class
 
     if(auxFlight)
     {
-        return &(auxFlight->getPassengers(_class));
+        return auxFlight->getPassengers(_class, Flight::Booked);
     }
     else
     {
@@ -179,14 +178,14 @@ vector<Passenger*>* Controller::makeFlightInquiry(string _code, SeatClass _class
     }
 }
 
-vector<Passenger*>* Controller::makeFlightWaitingInquiry(string _code, SeatClass _class) {
+pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* Controller::makeFlightWaitingInquiry(string _code, Flight::SeatClass _class) {
     //Gets the passengers on a flight
 
       Flight *auxFlight = m_model->getFlightByCode(_code);
 
       if(auxFlight)
       {
-          return &(auxFlight->getWaiting(_class));
+          return auxFlight->getPassengers(_class, Flight::Waiting);
       }
       else
       {
@@ -196,11 +195,11 @@ vector<Passenger*>* Controller::makeFlightWaitingInquiry(string _code, SeatClass
 }
 
 //Setters and getters
-Model* getModel() {
+Model* Controller::getModel() {
  return m_model;
 }
 
-AbstractView* getView() {
+AbstractView* Controller::getView() {
   return m_view;
 }
 
