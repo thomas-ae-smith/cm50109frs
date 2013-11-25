@@ -22,11 +22,11 @@ public:
 	~Controller();
 
 //Methods for accessing the model
-	void makeReservation(string _name, string _code, SeatClass _class);
+	void makeReservation(string _name, string _code, Flight::SeatClass _class);
 	void makeCancellation(string _name, string _code);
 	vector<Flight*>* makePassengerInquiry(string _name);
-	vector <Passenger*>* makeFlightInquiry(string _code, SeatClass _class);
-	vector <Passenger*>* makeFlightWaitingInquiry(string _code, SeatClass _class);
+	pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* makeFlightInquiry(string _code, Flight::SeatClass _class);
+	pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* makeFlightWaitingInquiry(string _code, Flight::SeatClass _class);
 
 //Setters and getters
 	Model* getModel();

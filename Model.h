@@ -3,7 +3,6 @@
 
 #include <string>
 #include <map>
-#include <multimap>
 #include <vector>
 #include "Passenger.h"
 #include "Flight.h"
@@ -20,7 +19,7 @@ class Model {
 		Passenger* getPassengerByName(string _passenger);
 		Flight* getFlightByCode(string _code);
 		vector<Flight*> getFlightsByDate(string _date);
-		void addReservation(string _name, string _code, Flight::SeatClass _class);
+    void addReservation(string _name, string _code, Flight::SeatClass _class);
 
 	private:
 		//Map of all passengers, sorted by name
@@ -36,7 +35,7 @@ class Model {
 		Model();
 		//Static data: instance pointer and filename
 		static Model* s_model;
-		static string s_filename = "FCGDATA";
+		static const string s_filename;
 
 };
 

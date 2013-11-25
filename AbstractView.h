@@ -2,9 +2,12 @@
 #define ABSTRACTVIEW_H
 
 #include "Model.h"
+//#include "Controller.h"
 #include <string>
 
-class AbstractView{
+class Controller;
+
+class AbstractView {
 
 //This is an abstract interface for the view
 //Different types of views will inherit from this class and implement their own methods
@@ -31,7 +34,7 @@ public:
     virtual void displayFlight(Flight* _flight) = 0;
     
 //Display all the passengers on a flight, either waiting or in one of the available classes (first, economy)
-    virtual void displayPassengers(vector<Passenger*>* _passengers) = 0;
+    virtual void displayPassengers(pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* _passengers) = 0;
 
 //Display all the flights a passenger's on
     virtual void displayFlights(vector<Flight*>* _flights) = 0;
@@ -43,7 +46,7 @@ public:
 //Once updated the model will ask the view to update
 
 //Reservation
-    virtual void makeReservationEvent(string _name, string _code, SeatClass _class) = 0;
+    virtual void makeReservationEvent(string _name, string _code, Flight::SeatClass _class) = 0;
 //Cancellation
     virtual void makeCancellationEvent(string _name, string _code) = 0;
 //Passenger Inquiry
@@ -59,6 +62,10 @@ public:
     virtual bool yesNoDialog(string _message) = 0;
 
     virtual void dialogMessage(string _message) = 0;
+    
+    virtual void setController(Controller* _controller) = 0;
+    virtual Controller* getController() = 0;
+
 
     
 };
