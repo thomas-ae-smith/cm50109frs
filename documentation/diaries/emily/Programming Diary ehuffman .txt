@@ -24,3 +24,9 @@ Nov 17 - Sunday
 Nov 18 - Monday
 -Peer programmed Model class with Lily. 
 -Added file-reading (of flight data) to Model with Lily.
+
+Nov 22 - Friday
+-3 hour group meeting
+-Reviewed all program files and edited where necessary
+-Added comments to program files
+-Debugged and attempted to build
