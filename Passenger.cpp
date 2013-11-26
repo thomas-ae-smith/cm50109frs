@@ -1,4 +1,5 @@
 #include "Passenger.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -23,7 +24,7 @@ void Passenger::addFlight(Flight *_flight) {
 //Remove a flight from the passenger's list of flights
 void Passenger::removeFlight(Flight* _flight) {
      vector <Flight*>::iterator someIterator;
-     someIterator = std::find(m_flights.begin(), m_flights.end(), _flight);   //if not found, returns last element.
+     someIterator = find(m_flights.begin(), m_flights.end(), _flight);   //if not found, returns last element.
      m_flights.erase(someIterator);
 }
 

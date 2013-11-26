@@ -10,7 +10,7 @@ using namespace std;
 class Flight {
 //Stores data relating to an individual flight
 
-	public:
+public:
     
 //Enum structure with the possible flight classes
         enum SeatClass {
@@ -51,12 +51,14 @@ class Flight {
 //Get the code of the flight
     string getCode() { return m_code; }
 
+//Get date of flight
+    string getDate() { return m_date; }
 
 		
-	private:
-		string m_code; //Code of flight
-		string m_date; //Date of flight as DDMMYYYY
-		string m_time; //Time of flight as HHMM (24)
+private:
+    string m_code; //Code of flight
+    string m_date; //Date of flight as DDMMYYYY
+    string m_time; //Time of flight as HHMM (24)
     int m_seatnumbers[2]; //Array of seats available per class
     vector<Passenger*>* m_seatlist[2]; //Array of vectors for passengers per class
 

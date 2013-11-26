@@ -1,0 +1,8 @@
+Anamaria Ciucanu - diary entry 3
+Date: 25/11/2013 - 26/11/2013
+
+After the meeting, worked on debugging the integrated version of the program
+Made some changes in class responsibility (model, controller) and wrote a few auxiliary methods 
+(such as hasSameDayFlights) for the program to work as expected. 
+Wrote a few comments and observations on what else needs to be done or taken into consideration.
+
