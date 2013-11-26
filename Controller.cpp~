@@ -7,8 +7,6 @@
 //When getting information from the model, data validity needs to be tested -> Model is responsible
 
 
-//TODO: makeReservation method needs to be simplified
-
 //Constructor - takes in pointers to the model and the view
 Controller::Controller(Model *_model, AbstractView *_view)
 {

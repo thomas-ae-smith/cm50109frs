@@ -1,6 +1,7 @@
 #include "Flight.h"
 #include <cmath>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -53,17 +54,14 @@ int Flight::getSeatAvailability(SeatClass _class) {
 	return m_seatnumbers[_class] - (int)m_seatlist[_class]->size();
 }
 
-pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* Flight::getPassengers(SeatClass _class, SeatStatus _status) {
-	return (_status == Booked) ?
+pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>*  Flight::getPassengers(SeatClass _class, SeatStatus _status) {
+    //TODO: Deallocation
+    return (_status == Booked) ?
     new pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>(m_seatlist[_class]->begin(), m_seatlist[_class]->begin() + m_seatnumbers[_class])
     :
     new pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>(m_seatlist[_class]->begin() + m_seatnumbers[_class] + 1, m_seatlist[_class]->end());
 }
 
 
-// string m_code;
-// string m_date;
-// string m_time;
-// int[] m_seatnumbers;
-// vector<passenger*>[] m_seatlist;
+
 

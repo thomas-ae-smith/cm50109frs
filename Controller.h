@@ -21,17 +21,25 @@ public:
 	Controller(Model* _model, AbstractView *_view);
 	~Controller();
 
-//Methods for accessing the model
-	void makeReservation(string _name, string _code, Flight::SeatClass _class);
+//Make a reservation by getting the info from the view and passing it to the model
+    void makeReservation(string _name, string _code, string _class);
+
+//Make a cancellation, given the passenger name and flight code
 	void makeCancellation(string _name, string _code);
+
+// Make a passenger inquiry, ie. return the flights the passenger's on
 	vector<Flight*>* makePassengerInquiry(string _name);
-	pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* makeFlightInquiry(string _code, Flight::SeatClass _class);
-	pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* makeFlightWaitingInquiry(string _code, Flight::SeatClass _class);
+
+// Make a flight inquiry, ie return the passengers waiting or booked on a certain flight
+    pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* makeFlightInquiry(string _code, Flight::SeatClass _class, Flight::SeatStatus _status);
+
+ //Check if a passenger has any flights on the same day with the given flight
+    bool hasSameDayFlights(string _name, Flight* _flight);
+
 
 //Setters and getters
 	Model* getModel();
 	AbstractView* getView();
-
 };
 
 #endif // CONTROLLER_H

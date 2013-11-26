@@ -4,8 +4,6 @@
 #include <sstream>
 #include "Controller.h"
 
-//TODO: All the prompt methods need to be implemented
-
 using namespace std;
 
 CLIView::CLIView() {

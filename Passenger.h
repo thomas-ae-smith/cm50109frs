@@ -7,33 +7,34 @@
 
 class Passenger
 {
-private:
-//Data
-
-//The name of the person.
-	string m_name;
-//The list of flights the person is on or waiting for a place on.
-//can we change this so it has flight pointers and waiting/not? or change getFlights?
-	vector<Flight*> m_flights;
-
 public:
-//Methods
-
-//constructor
+//Constructor
 	Passenger (string _name);
-//destructor
+//Destructor
 	~Passenger();
-//sets passenger name
+
+//Sets passenger name
 	void setName(string _name);
-//returns passenger name
+
+//Returns passenger name
 	string getName();
-//adds a flight to the passenger's list of flights
+
+//Adds a flight to the passenger's list of flights
 	void addFlight (Flight* _flight);
-//removes a flight from the passenger's list of flights
+
+//Removes a flight from the passenger's list of flights
 	void removeFlight(Flight* _flight);
-//returns the passenger's list of flights
+
+//Returns the passenger's list of flights
 	vector<Flight*>* getFlights();
 
+private:
+//The name of the person.
+    string m_name;
+
+//The list of flights the person is on or waiting for a place on.
+//QUESTION: Can we change this so it has flight pointers and waiting/not? or change getFlights?
+    vector<Flight*> m_flights;
 };
 
 #endif // PASSENGER_H

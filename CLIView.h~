@@ -1,31 +1,24 @@
-#ifndef CLIVIEW_H
-#define CLIVIEW_H
 #include "AbstractView.h"
-#include <vector>
 
 //Command line View class
 
-class CLIView: public AbstractView
+class CLIView: public class AbstractView
 {
 //This is an abstract interface for the view
 //Different types of views will inherit from this class and implement their own methods
 
 public:
 
-//Constructor
-    CLIView();
-//Destructor
-    ~CLIView();
+   CLIView();
+   ~CLIView();	
+
 	
 //Help
-    void help();
+void help();
 
 //Starting point
-    void start();
+ void start();
 
-//Refresh
-    void refresh();
-    
 //Display one passenger's information (name)
     void displayPassenger(Passenger* _passenger);
 
@@ -33,27 +26,27 @@ public:
     void displayFlight(Flight* _flight);
     
 //Display all the passengers on a flight, either waiting or in one of the available classes (first, economy)
-    void displayPassengers(pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* _passengers);    
+    void displayPassengers(vector<Passenger*>* _passengers);    
 
 //Display all the flights a passenger's on
     void displayFlights(vector<Flight*>* _flights);   
 
-//CLI prompt methods will read in strings from the user and
-// will make calls to the make[...] methods described bellow
+//CLI prompt methods
+
 	void reservationPrompt(string _reservation);
 	void cancellationPrompt(string _cancellation);
 	void passengerInqPrompt(string _passengerInq);
 	void flightInqPrompt(string _flightInq);
 
-//Reservation
-    void makeReservationEvent(string _name, string _code, string _class);
+	
 
+
+//Reservation
+    void makeReservationEvent(string _name, string _code, SeatClass _class);
 //Cancellation
     void makeCancellationEvent(string _name, string _code);
-
 //Passenger Inquiry
     void makePassengerInquiryEvent(string _name);
-
 //Flight Inquiry
     void makeFlightInquiry(string _code);
 
@@ -69,5 +62,3 @@ public:
 private:
     Controller* m_controller;
 };
-
-#endif // CLIVIEW_H
