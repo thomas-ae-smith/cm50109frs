@@ -147,7 +147,7 @@ pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>*  Model::makeFli
 }
 
  //PROBLEM - CHECK!
- /*
+
 //Get all the flights on the given date
 vector<Flight*>*  Model::getFlightsByDate(string _date)
 {
@@ -162,4 +162,4 @@ vector<Flight*>*  Model::getFlightsByDate(string _date)
     return new vector<Flight*>(dateRange.first, dateRange.second);
 
 }
-*/
+
