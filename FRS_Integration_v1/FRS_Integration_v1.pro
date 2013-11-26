@@ -15,3 +15,5 @@ SOURCES += \
     ../CLIView.cpp
 
 OTHER_FILES += ../FCGDATA
+
+OBJECTS_DIR += ../obj
