@@ -32,6 +32,9 @@ class Model {
         //Adds a new reservation to the data base
         void addReservation(string _name, string _code, Flight::SeatClass _class);
 
+        //Adds a flight to the database
+        void addFlight(Flight* _flight);
+
         //Given a string, returns the class it corresponds to
         Flight::SeatClass getClass(string _class);
 
