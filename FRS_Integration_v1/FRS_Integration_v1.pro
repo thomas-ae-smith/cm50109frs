@@ -14,6 +14,7 @@ SOURCES += \
     ../Controller.cpp \
     ../CLIView.cpp
 
-OTHER_FILES += ../FCGDATA
+OTHER_FILES += ../data/FCGDATA
+
 
 OBJECTS_DIR += ../obj

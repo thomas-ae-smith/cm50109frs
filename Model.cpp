@@ -52,8 +52,7 @@ Model::Model(){
             flightDate = auxDate;
 
             Flight* flightPTR = new Flight(flightCode, flightTime, flightDate, seats);
-            m_flightByCode.insert(pair<string,Flight*>(flightCode, flightPTR));
-            m_flightByDate.insert(pair<string,Flight*>(flightDate, flightPTR));
+            addFlight(flightPTR);
         }
 
         inFlightFile.close();
@@ -77,9 +76,15 @@ Flight* Model::getFlightByCode(string _code){
     return m_flightByCode[_code];
 }
 
+//Adds a flight to the database
+void Model::addFlight(Flight* _flight)
+{
+    m_flightByCode.insert(pair<string,Flight*>(_flight->getCode(), _flight));
+    m_flightByDate.insert(pair<string,Flight*>(_flight->getDate(), _flight));
+}
+
 //Get passenger from the map using passenger name as the key
 Passenger* Model::getPassengerByName(string _passenger){
-    //TODO create passenger if not extant
     return m_passengers[_passenger];
 }
 
@@ -147,7 +152,7 @@ pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>*  Model::makeFli
 }
 
  //PROBLEM - CHECK!
-
+/*
 //Get all the flights on the given date
 vector<Flight*>*  Model::getFlightsByDate(string _date)
 {
@@ -161,5 +166,5 @@ vector<Flight*>*  Model::getFlightsByDate(string _date)
 //TODO: Where to deallocate vector
     return new vector<Flight*>(dateRange.first, dateRange.second);
 
-}
+}*/
 
