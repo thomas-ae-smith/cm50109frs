@@ -34,3 +34,7 @@ Nov 22 - Friday
 Nov 25 - Monday
 -2 hour group "meeting" (debugging session)
 -Debugged (all but one bug removed).
+
+Nov 26 - Tuesday
+-1 hour meeting.
+-Organised/divied up testing responsibilities.
