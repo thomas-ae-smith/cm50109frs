@@ -5,10 +5,10 @@ all: frs
 frs: controller_harness.o Controller.o Model.o CLIView.o Flight.o Passenger.o 
 	$(CC) controller_harness.o Controller.o Model.o CLIView.o Flight.o Passenger.o -o frs
 
-controller_harness.o: controller_harness.cpp
+controller_harness.o: ../testing/controller_harness.cpp
 	$(CC) $(CFLAGS) ../testing/controller_harness.cpp
 
-Controller.o: ../../Controller.cpp
+Controller.o: ../Controller.cpp
 	$(CC) $(CFLAGS) ../Controller.cpp
 
 CLIView.o: ../CLIView.cpp
@@ -25,3 +25,4 @@ Passenger.o: ../Passenger.cpp
 
 clean:
 	rm -rf *o 
+	rm frs
