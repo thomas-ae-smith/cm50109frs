@@ -1,11 +1,16 @@
 #include "../Controller.h"
+#include "../CLIView.h"
+#include <iostream>
 
 
 //Testing the flight class and its methods
 
 int main()
 {
+AbstractView* view = new CLIView();
+Model* model = Model::getModel();
 
+Controller* controller = new Controller(model, view);
 cout<<"Hello Controller harness!";
 
 return 0;
