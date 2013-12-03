@@ -1,5 +1,6 @@
 #include "Controller.h"
 #include <iostream>
+#include <assert.h>
 
 
 //OBSERVATION - Design!
@@ -52,6 +53,7 @@ void Controller::makeReservation(string _name, string _code, string _class)
 {
     //Get the flight and the seat class
     Flight *auxFlight = m_model->getFlightByCode(_code);
+
     Flight::SeatClass auxClass = m_model->getClass(_class);
 
     //Check for availability of flight, else protest
@@ -64,7 +66,7 @@ void Controller::makeReservation(string _name, string _code, string _class)
         {            
             m_model->addReservation(_name, _code, auxClass);
             m_view->refresh();
-            m_view->dialogMessage("Success, you were added on the flight!");
+            m_view->dialogMessage("Success, you were added on the flight! \n");
         }
         else //There aren't any seats left in that class
         {            
