@@ -1,11 +1,14 @@
 #include "Controller.h"
 #include <iostream>
+#include <assert.h>
 
 
 //OBSERVATION - Design!
 //When adding data to the model, more bahaviours need to be tested -> Controller is responsible
 //When getting information from the model, data validity needs to be tested -> Model is responsible
 
+
+//TODO: makeReservation method needs to be simplified
 
 //Constructor - takes in pointers to the model and the view
 Controller::Controller(Model *_model, AbstractView *_view)
@@ -50,6 +53,7 @@ void Controller::makeReservation(string _name, string _code, string _class)
 {
     //Get the flight and the seat class
     Flight *auxFlight = m_model->getFlightByCode(_code);
+
     Flight::SeatClass auxClass = m_model->getClass(_class);
 
     //Check for availability of flight, else protest
