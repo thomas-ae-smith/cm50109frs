@@ -1,6 +1,7 @@
 #include "../Flight.h"
 #include "../Passenger.h"
 
+
 //Testing the flight class and its methods
 
 void main()
@@ -18,7 +19,7 @@ void main()
 
 /*
 //Removes a passenger from the flight		
-	void removePassenger(Passenger* _passenger);
+	void removePassenger(passenger1);
 
 //Checks if a passenger is on the flight and returns a boolean (yes,no)		
 	bool passengerOnFlight(Passenger* _passenger);
