@@ -32,7 +32,7 @@ Model::Model(){
     inFlightFile.open(s_filename.c_str(), ios::in);
 
     if (!inFlightFile.is_open()) {
-        cerr << "Failed to open file, please check" << endl;
+        cerr << "Failed to open file, please check\n" << endl;
         exit(1);
     } //end if
     else
