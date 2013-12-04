@@ -6,8 +6,6 @@
 //OBSERVATION - Design!
 //When adding data to the model, more bahaviours need to be tested -> Controller is responsible
 //When getting information from the model, data validity needs to be tested -> Model is responsible
-
-
 //TODO: makeReservation method needs to be simplified
 
 //Constructor - takes in pointers to the model and the view
@@ -47,13 +45,19 @@ bool Controller::hasSameDayFlights(string _name, Flight* _flight)
     return false;
 }
 
+//Adds a reservation to the model and refreshes the view
+void Controller::addReservation(string _name, string _code, Flight::SeatClass _class)
+{
+    m_model->addReservation(_name, _code, _class);
+    m_view->refresh();
+    m_view->dialogMessage("Success, you were added on the flight! \n");
+}
 
 //Makes a reservation: Adds a person on a flight and a flight to a person
 void Controller::makeReservation(string _name, string _code, string _class)
 {
     //Get the flight and the seat class
     Flight *auxFlight = m_model->getFlightByCode(_code);
-
     Flight::SeatClass auxClass = m_model->getClass(_class);
 
     //Check for availability of flight, else protest
@@ -64,10 +68,9 @@ void Controller::makeReservation(string _name, string _code, string _class)
 
         if(check>0) //There are seats left, we add the passenger
         {            
-            m_model->addReservation(_name, _code, auxClass);
-            m_view->refresh();
-            m_view->dialogMessage("Success, you were added on the flight! \n");
+            addReservation(_name, _code, auxClass);
         }
+
         else //There aren't any seats left in that class
         {            
             if(auxClass == Flight::First) //If the class is first, we offer the economy option
@@ -75,20 +78,19 @@ void Controller::makeReservation(string _name, string _code, string _class)
                 m_view->dialogMessage("There are no more seats left in the first class.");
 	
                 check = auxFlight->getSeatAvailability(Flight::Economy);
+
                 if(check>0)
                 {
-
+                 //There are seats available in the economy class
                     if(m_view->yesNoDialog("Would you like a seat in the economy class? y/n"))
                     {
-                        m_model->addReservation(_name, _code, auxClass);
-                        m_view->refresh();
+                        addReservation(_name, _code, Flight::Economy);
                     }
                     else
                     {
                         if(m_view->yesNoDialog("Would you like to be added on the First class waiting list? y/n"))
                         {
-                            m_model->addReservation(_name, _code, auxClass);
-                            m_view->refresh();
+                            addReservation(_name, _code, Flight::First);
                         }
                         else
                         {
@@ -102,16 +104,14 @@ void Controller::makeReservation(string _name, string _code, string _class)
  
                     if(m_view->yesNoDialog("Would you like to be added on the First class waiting list? y/n"))
                     {
-                       m_model->addReservation(_name, _code, auxClass);
-                       m_view->refresh();
+                       addReservation(_name, _code, Flight::First);
                     }
                     else
                     {
 
                        if(m_view->yesNoDialog("Would you like to be added on the Economy class waiting list? y/n"))
                        {
-                          m_model->addReservation(_name, _code, auxClass);
-                          m_view->refresh();
+                          m_model->addReservation(_name, _code, Flight::Economy);
                        }
                        else
                        {
@@ -125,10 +125,8 @@ void Controller::makeReservation(string _name, string _code, string _class)
             {
                 if(m_view->yesNoDialog("There are no seats available.  Would you like to be put on the waiting list? y/n"))
                 {
-                     m_model->addReservation(_name, _code, auxClass);
-                     m_view->refresh();
+                     addReservation(_name, _code, auxClass);
                 }
-
                 else
                 {
                     m_view->dialogMessage("You were not added to the list. Thank you.");
@@ -138,8 +136,8 @@ void Controller::makeReservation(string _name, string _code, string _class)
     }
     else
     {
-        //Think of a way of logging errors and exceptions
-        cerr << "makeReservation: The flight and/or passenger do not exist." << endl;
+        //TODO: Think of a way of logging errors and exceptions
+        m_view->dialogMessage("The flight does not exist or is on some day as another flight.\n");
     }
 }
 
@@ -165,7 +163,7 @@ void Controller::makeCancellation(string _name, string _code)
     }
     else
     {
-        cerr<<"makeCancellation: The flight and/or passenger do not exist. "<<endl;
+        m_view->dialogMessage("The flight or user do not exist.\n");
     }
 }
 
