@@ -21,6 +21,9 @@ public:
 	Controller(Model* _model, AbstractView *_view);
 	~Controller();
 
+//Adds a reservation to the model and refreshes the view
+    void addReservation(string _name, string _code, Flight::SeatClass _class);
+
 //Make a reservation by getting the info from the view and passing it to the model
     void makeReservation(string _name, string _code, string _class);
 
