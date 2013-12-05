@@ -91,10 +91,7 @@ Passenger* Model::getPassengerByName(string _passenger){
 
 //Creates a new passenger from the given name, and adds it to the map
 Passenger* Model::addPassenger(string _name) {
-    Passenger* added = new Passenger(_name);
-    m_passengers.insert(pair<string,Passenger*>(_name, added));
-
-    return added;
+    return m_passengers[_name] = new Passenger(_name);
 }
 
 //Adds a new reservation to the data base
@@ -153,7 +150,6 @@ pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>*  Model::makeFli
   }
 }
 
- //PROBLEM - CHECK!
 
 //Get all the flights on the given date
 vector<Flight*>*  Model::getFlightsByDate(string _date)
@@ -163,8 +159,8 @@ vector<Flight*>*  Model::getFlightsByDate(string _date)
 
 //Returns the pair of iterators representing the range of all flights on the date
     dateRange=m_flightByDate.equal_range(_date);
-
-//Constructs a vector from the range, of all the flights found on that date    
+    
+//Constructs a vector from the range, of all the flights found on that date
 //TODO: Where to deallocate vector
     multimap<string, Flight*>::iterator it = dateRange.first;
     vector<Flight*>* flights = new vector<Flight*>();
