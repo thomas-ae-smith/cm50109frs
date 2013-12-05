@@ -1,0 +1,10 @@
+Meeting 7
+04/12/2013
+
+Testing the individual classes and creating harnesses (testing files) together.
+Each of us tested their own classes and we shared ideas on solving bugs.
+
+Milestone this week: Integrating the tested parts and testing the integration
+
+Next meeting: 05/12/2013
+			  16:00 EB 	
