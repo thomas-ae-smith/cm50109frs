@@ -30,3 +30,19 @@ Nov 22 - Friday
 -Reviewed all program files and edited where necessary
 -Added comments to program files
 -Debugged and attempted to build
+
+Nov 25 - Monday
+-2 hour group "meeting" (debugging session)
+-Debugged (all but one bug removed).
+
+Nov 26 - Tuesday
+-1 hour meeting.
+-Organised/divied up testing responsibilities.
+
+Dec 3 - Tuesday
+-Tested Passenger Class
+
+Dec 4 - Wednesday
+-Group programming/meeting (3 hours)
+-Finished testing Passenger
+-Helped test Model

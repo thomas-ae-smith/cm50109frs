@@ -4,6 +4,7 @@
 #include <vector>
 #include "Flight.h"
 
+using namespace std;
 
 class Passenger
 {
