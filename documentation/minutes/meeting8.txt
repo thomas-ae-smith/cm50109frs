@@ -1,0 +1,11 @@
+Meeting 7
+05/12/2013
+
+Fixed bugs, cleaned repository and set milestone for next week.
+Ana and Tom will finish the View (GUI and CLI, respectively),
+Lilly and Emily will work on the documentation. 
+
+Milestone for next week: Blackbox testing and documentation
+
+Next meeting: 09/12/2013 
+			  10:00 am EB
