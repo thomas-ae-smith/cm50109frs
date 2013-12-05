@@ -129,7 +129,7 @@ void CLIView::displayPassengers(pair<vector<Passenger*>::iterator,vector<Passeng
   if(_passengers != NULL)
    {
     vector<Passenger*>::iterator it;
-    for (it = _passengers->first; it != _passengers->second; it++)
+    for (it = _passengers->first; *it != *(_passengers->second); ++it)
      {
         displayPassenger((*it));
      }
@@ -142,7 +142,7 @@ void CLIView::displayFlights(vector<Flight*>* _flights) {
    if(_flights != NULL)
     {
      vector<Flight*>::iterator it;
-     for (it = (*_flights).begin(); it != (*_flights).end(); it++)
+     for (it = (*_flights).begin(); it != (*_flights).end(); ++it)
      {
 		displayFlight((*it));
      }
