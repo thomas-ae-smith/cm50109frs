@@ -154,7 +154,7 @@ pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>*  Model::makeFli
 }
 
  //PROBLEM - CHECK!
-/*
+
 //Get all the flights on the given date
 vector<Flight*>*  Model::getFlightsByDate(string _date)
 {
@@ -166,7 +166,14 @@ vector<Flight*>*  Model::getFlightsByDate(string _date)
 
 //Constructs a vector from the range, of all the flights found on that date    
 //TODO: Where to deallocate vector
-    return new vector<Flight*>(dateRange.first, dateRange.second);
+    multimap<string, Flight*>::iterator it = dateRange.first;
+    vector<Flight*>* flights = new vector<Flight*>();
+    
+    while (it != dateRange.second) {
+        flights->push_back(it->second);
+        ++it;
+    }
+    return flights;
 
-}*/
+}
 
