@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
             endingLineNumber = "173"
-            landmarkName = "Controller::makeFlightInquiry(string _code, Flight::SeatClass _class)"
+            landmarkName = "Controller::makePassengerInquiry(string _name)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
