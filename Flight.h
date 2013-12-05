@@ -7,8 +7,6 @@ class Passenger;
 
 using namespace std;
 
-#include "Passenger.h"
-using namespace std;
 class Flight {
 //Stores data relating to an individual flight
 
