@@ -1,6 +1,0 @@
-design&analysis
-1.Singleton
-
-Model is universal across the system,by doing this,the system will operate more efficiently and restrict the instantiation to many objects.Isolating from the unpredictability of the order of dynamic initialisation, easy to controll.
-2.Using Map &Multimap
-To implement the passenger and flight inquiry,a sorted container is needed,here we choose map for inquiry of passenger by name and flight by flight number,multimap for inquiry of flight by date. Both of them storing the data as the format pair<key,value>.map is sorted and one-to-one while multimap is one to many. Since the number of flights on a single date is more than one,we use multimap to handle the date inquiry.
