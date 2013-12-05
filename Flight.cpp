@@ -59,7 +59,7 @@ pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>*  Flight::getPas
     return (_status == Booked) ?
     new pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>(m_seatlist[_class]->begin(), m_seatlist[_class]->begin() + m_seatnumbers[_class])
     :
-    new pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>(m_seatlist[_class]->begin() + m_seatnumbers[_class] + 1, m_seatlist[_class]->end());
+    new pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>(m_seatlist[_class]->begin() + m_seatnumbers[_class], m_seatlist[_class]->end());
 }
 
 

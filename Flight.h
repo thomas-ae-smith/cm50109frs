@@ -7,12 +7,10 @@ class Passenger;
 
 using namespace std;
 
-#include "Passenger.h"
-using namespace std;
 class Flight {
 //Stores data relating to an individual flight
 
-public:
+    public:
     
 //Enum structure with the possible flight classes
         enum SeatClass {

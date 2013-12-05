@@ -19,5 +19,65 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CLIView.cpp"
+            timestampString = "407956441.783667"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "CLIView::displayPassengers(pair&lt;vector&lt;Passenger*&gt;::iterator,vector&lt;Passenger*&gt;::iterator&gt;* _passengers)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CLIView::displayPassengers(std::__1::pair&lt;std::__1::__wrap_iter&lt;Passenger**&gt;, std::__1::__wrap_iter&lt;Passenger**&gt; &gt;*)"
+                  moduleName = "cm50109frs"
+                  urlString = "file:///Users/Tirhakah/Projects/coursework-cde/cm50109frs/CLIView.cpp"
+                  timestampString = "407956441.934729"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CLIView::displayPassengers(std::__1::pair&lt;std::__1::__wrap_iter&lt;Passenger**&gt;, std::__1::__wrap_iter&lt;Passenger**&gt; &gt;*)"
+                  moduleName = "cm50109frs"
+                  urlString = "file:///Users/Tirhakah/Projects/coursework-cde/cm50109frs/CLIView.cpp"
+                  timestampString = "407956441.936653"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "146">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CLIView::displayPassengers(std::__1::pair&lt;std::__1::__wrap_iter&lt;Passenger**&gt;, std::__1::__wrap_iter&lt;Passenger**&gt; &gt;*)"
+                  moduleName = "cm50109frs"
+                  urlString = "file:///Users/Tirhakah/Projects/coursework-cde/cm50109frs/CLIView.cpp"
+                  timestampString = "407956441.936926"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "248">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

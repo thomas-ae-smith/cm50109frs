@@ -131,7 +131,7 @@ void CLIView::displayPassengers(pair<vector<Passenger*>::iterator,vector<Passeng
     vector<Passenger*>::iterator it;
     for (it = _passengers->first; it != _passengers->second; it++)
      {
-        displayPassenger((*it));
+        displayPassenger(*it);
      }
    }
 }
