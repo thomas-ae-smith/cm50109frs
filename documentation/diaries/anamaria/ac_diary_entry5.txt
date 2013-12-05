@@ -1,0 +1,9 @@
+Anamaria Ciucanu - diary entry 5
+Date: 04/12/2013 - 05/12/2013
+
+Tested Controller class using the controller_harness.cpp file.
+Found a bug in the model - when adding a passenger to the map, the passenger pointer is null ->solved with Tom
+Found bug in CLIView - when displaying passengers using the pair of iterators, the iterator goes one extra step, dereferencing the termination pointer which is null
+Worked on GUIView.cpp file for the GUI version of the program.
+
+
