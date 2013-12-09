@@ -51,7 +51,7 @@ void GUIView::refresh()
 void GUIView::displayPassenger(Passenger* _passenger)
 {
     if(_passenger!=NULL)
-    {
+    {        
         m_ui->passengerList->addItem(QString(_passenger->getName().c_str()));
     }
 }
