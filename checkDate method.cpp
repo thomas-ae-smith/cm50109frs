@@ -24,7 +24,7 @@ bool checkDate (string date)
      return false;
   }
   else {
-     if (daysPerMonth[monthNum - 1] >= dayNum){
+     if (daysPerMonth[monthNum - 1] >= dayNum && dayNum > 0){
       cout << "Valid.";
       return true;
      }
