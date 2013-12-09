@@ -12,12 +12,26 @@ TARGET = GUIView
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
+SOURCES +=\
         mainwindow.cpp \
-    GUIView.cpp
+    GUIView.cpp \
+    ../Passenger.cpp \
+    ../Model.cpp \
+    ../Flight.cpp \
+    ../Controller.cpp \
+    ../CLIView.cpp \
+    main.cpp
+
+INCLUDEPATH += ../
 
 HEADERS  += mainwindow.h \
     AbstractView.h \
-    GUIView.h
+    GUIView.h \
+    ../Passenger.h \
+    ../Model.h \
+    ../Flight.h \
+    ../Controller.h \
+    ../CLIView.h \
+    ../AbstractView.h
 
 FORMS    += mainwindow.ui

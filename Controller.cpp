@@ -45,6 +45,30 @@ bool Controller::hasSameDayFlights(string _name, Flight* _flight)
     return false;
 }
 
+//Checks if the passenger is on that flight
+bool Controller::passengerHasFlight(Passenger* _passenger, Flight* _flight)
+{
+    if((_passenger!=NULL) && (_flight!=NULL))
+    {
+        vector<Flight*>* auxFlights = _passenger->getFlights();
+
+        if(auxFlights!=NULL)
+        {
+            vector<Flight*>::iterator it = auxFlights->begin();
+
+            while(it!=auxFlights->end())
+            {
+                if((*it)==_flight)
+                {
+                    return true;
+                }
+                ++it;
+            }
+        }
+    }
+    return false;
+}
+
 //Adds a reservation to the model and refreshes the view
 void Controller::addReservation(string _name, string _code, Flight::SeatClass _class)
 {
@@ -150,8 +174,7 @@ void Controller::makeCancellation(string _name, string _code)
     //Get the passenge
     Passenger *auxPassenger = m_model->getPassengerByName(_name);
 
-
-    if ((auxFlight != NULL) && (auxPassenger != NULL))
+    if(passengerHasFlight(auxPassenger, auxFlight))
     {
         //Remove passenger from flight
         auxFlight->removePassenger(auxPassenger);
@@ -163,7 +186,7 @@ void Controller::makeCancellation(string _name, string _code)
     }
     else
     {
-        m_view->dialogMessage("The flight or user do not exist.\n");
+        m_view->dialogMessage("The flight was not found in the passengers flight list.\n");
     }
 }
 

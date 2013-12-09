@@ -54,7 +54,7 @@ public:
     virtual void makePassengerInquiryEvent(string _name) = 0;
 
 //Flight Inquiry
-    virtual void makeFlightInquiry(string _code) = 0;
+    virtual void makeFlightInquiryEvent(string _code) = 0;
 
 
 //Auxiliary methods

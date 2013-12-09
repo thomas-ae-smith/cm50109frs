@@ -173,3 +173,19 @@ vector<Flight*>*  Model::getFlightsByDate(string _date)
 
 }
 
+//TODO: Should we have pointers to maps instead?
+
+//Get a pointer to all the passengers
+map<string, Passenger*>* Model::getPassengers()
+{
+    return &(this->m_passengers);
+}
+
+//Get a pointer to all the flights
+map<string, Flight *>* Model::getFlights()
+{
+    return &(this->m_flightByCode);
+}
+
+
+
