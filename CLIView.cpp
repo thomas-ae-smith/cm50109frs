@@ -168,7 +168,7 @@ void CLIView::makePassengerInquiryEvent(string _name) {
 }
 
 //Flight Inquiry
-void CLIView::makeFlightInquiry(string _code) {
+void CLIView::makeFlightInquiryEvent(string _code) {
     //TODO: Make this into one function that iterates through classes and statuses
     displayPassengers(m_controller->makeFlightInquiry(_code, Flight::First, Flight::Booked));
     displayPassengers(m_controller->makeFlightInquiry(_code, Flight::First, Flight::Waiting));

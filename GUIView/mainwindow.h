@@ -27,8 +27,6 @@ private slots:
 
     void on_economyRadio_clicked();
 
-
-
     void on_flightInquiry_clicked();
 
     void on_refreshButton_clicked();
@@ -38,6 +36,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     AbstractView* m_view;
+    Model* m_model;
+    Controller* m_controller;
 };
 
 #endif // MAINWINDOW_H

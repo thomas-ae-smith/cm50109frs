@@ -44,6 +44,14 @@ class Model {
         //Make a flight inquiry and return a pointer to a pair of iterators, delimiting a list of booked/waiting passengers
         pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>*  makeFlightInquiry(string _code, Flight::SeatClass _class, Flight::SeatStatus _status);
 
+        //Get a pointer to all the passengers
+        map<string, Passenger*>* getPassengers();
+
+        //Get a pointer to all the flights
+        map<string, Flight*>* getFlights();
+
+
+
 	private:
 		//Map of all passengers, sorted by name
 		map<string,Passenger*> m_passengers;

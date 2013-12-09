@@ -29,16 +29,29 @@ void Flight::addPassenger(Passenger* _passenger, SeatClass _class) {
 }
 
 // remove a passenger if they exist in the waiting lists
-void Flight::removePassenger(Passenger* _passenger) {
+void Flight::removePassenger(Passenger* _passenger)
+{
 	vector<Passenger*> *first = m_seatlist[First];
 	vector<Passenger*> *economy = m_seatlist[Economy];
 	vector<Passenger*>::iterator index;
 
-	if ((index = find(first->begin(), first->end(), _passenger)) != first->end() ) {
-		first->erase(index);
-	} else if ((index = find(economy->begin(), economy->end(), _passenger)) != economy->end() ) {
-		economy->erase(index);
-	}
+    if(first!=NULL)
+    {
+        if((index = find(first->begin(), first->end(), _passenger)) != first->end() )
+        {
+            first->erase(index);
+            return;
+        }
+    }
+
+    if(economy!=NULL)
+    {
+        if ((index = find(economy->begin(), economy->end(), _passenger)) != economy->end() )
+        {
+            economy->erase(index);
+            return;
+        }
+    }
 }
 
 // find if a passenger exists on the passenger lists

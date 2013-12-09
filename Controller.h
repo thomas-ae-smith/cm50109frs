@@ -39,6 +39,9 @@ public:
  //Check if a passenger has any flights on the same day with the given flight
     bool hasSameDayFlights(string _name, Flight* _flight);
 
+ //Checks if the passenger is on that flight
+    bool passengerHasFlight(Passenger* _passenger, Flight* _flight);
+
 
 //Setters and getters
 	Model* getModel();

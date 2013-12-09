@@ -55,7 +55,7 @@ public:
     void makePassengerInquiryEvent(string _name);
 
 //Flight Inquiry
-    void makeFlightInquiry(string _code);
+    void makeFlightInquiryEvent(string _code);
 
 //Auxiliary methods
     bool checkAnswer(char _answer);
