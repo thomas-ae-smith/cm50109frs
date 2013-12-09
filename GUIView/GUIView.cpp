@@ -186,9 +186,19 @@ bool GUIView ::checkAnswer(char _answer)
 }
 
 bool GUIView::yesNoDialog(string _message)
-{
-
-    return true;
+{    
+    QMessageBox auxYNPopup;
+    auxYNPopup.setText(QString(_message.c_str()));
+    auxYNPopup.setStandardButtons(QMessageBox::Yes);
+    auxYNPopup.setDefaultButton(QMessageBox::No);
+    if(auxYNPopup.exec() == QMessageBox::Yes)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void GUIView::dialogMessage(string _message)

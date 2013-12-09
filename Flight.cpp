@@ -69,10 +69,17 @@ int Flight::getSeatAvailability(SeatClass _class) {
 
 pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>*  Flight::getPassengers(SeatClass _class, SeatStatus _status) {
     //TODO: Deallocation
-    return (_status == Booked) ?
-    new pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>(m_seatlist[_class]->begin(), m_seatlist[_class]->begin() + m_seatnumbers[_class])
-    :
-    new pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>(m_seatlist[_class]->begin() + m_seatnumbers[_class], m_seatlist[_class]->end());
+    if(m_seatlist[_class]->size()>0)
+    {
+        return (_status == Booked) ?
+        new pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>(m_seatlist[_class]->begin(), m_seatlist[_class]->begin() + m_seatnumbers[_class])
+        :
+        new pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>(m_seatlist[_class]->begin() + m_seatnumbers[_class], m_seatlist[_class]->end());
+    }
+    else
+    {
+        return NULL;
+    }
 }
 
 
