@@ -1,0 +1,7 @@
+Anamaria Ciucanu - diary entry 6
+Date: 09/12/2013
+
+Fixed bugs in GUIView version of the program. 
+Got a working version of the graphical user interface. 
+Needs black box testing.
+

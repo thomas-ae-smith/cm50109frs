@@ -1,0 +1,15 @@
+Meeting 9
+09/12/2013
+
+Short meeting where each of us showed the progress so far.
+The program with the GUIView version is ready for blackbox testing.
+The requirement analysis has been written in the documentation.
+
+Milestone for this week: Blackbox testing, refining and documentation
+
+Next meeting: 10/12/2013 
+			  15:15 EB
+
+
+
+Reminder: Deadline Friday, 13th December	
