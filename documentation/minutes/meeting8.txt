@@ -1,4 +1,4 @@
-Meeting 7
+Meeting 8
 05/12/2013
 
 Fixed bugs, cleaned repository and set milestone for next week.

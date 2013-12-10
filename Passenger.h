@@ -35,7 +35,7 @@ private:
 
 //The list of flights the person is on or waiting for a place on.
 //QUESTION: Can we change this so it has flight pointers and waiting/not? or change getFlights?
-    vector<Flight*> m_flights;
+    vector<Flight*>* m_flights;
 };
 
 #endif // PASSENGER_H
