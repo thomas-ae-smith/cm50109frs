@@ -1,6 +1,7 @@
 #include "CLIView.h"
 #include <iostream>
 #include <cctype>
+#include <cstring>
 #include <sstream>
 #include "Controller.h"
 
@@ -17,46 +18,118 @@ CLIView::~CLIView() {}
 //Help
 void CLIView::help()
 {
-    //Prints out the list of available commands
+	//Prints out the list of available commands
+	cout << "FRS - CLI interface for the Flight Reservation System" << endl;
+	cout << "Commands:" << endl;
+	cout << "\tr\tReservation <passenger name> <flight code> <seat class>" << endl;
+	cout << "\tc\tCancellation <passenger name> <flight code>" << endl;
+	cout << "\tp\tPassenger enquiry <passenger name>" << endl;
+	cout << "\tf\tFlight enquiry <flight code>" << endl;
+	cout << "\th\tHelp text" << endl;
+	cout << "\te\tExit" << endl;
 }
 
 //CLI prompt methods
 void CLIView::reservationPrompt(string _reservation)
 {
-    //_reservation is of the form [r name surname flight code class]
 
-     string buffer; // Have a buffer string
-     stringstream ss(_reservation); // Insert the string into a stream
-     vector<string> tokens; // Create vector to hold the tokens
+	string buffer; // Have a buffer string
+	stringstream ss(_reservation); // Insert the string into a stream
+	vector<string> tokens; // Create vector to hold the tokens
+	while (ss >> buffer)
+	{
+		tokens.push_back(buffer);
+	}
 
-     while (ss >> buffer)
-     {
-         tokens.push_back(buffer);
-     }
-     if(tokens.size() == 5)
-     {
-        this->makeReservationEvent(tokens[1]+tokens[2], tokens[3], tokens[4]);
-        this->dialogMessage("You have made a reservation! ");
-     }
-     else
-     {
-         this->dialogMessage("The format for reservation: r name surname flght_code class. ");
-     }
+	string name = tokens[1] + " " +tokens[2];
+	while (string::npos == name.find(' ',1)) {
+		cout << "Please enter a passenger forename and surname: ";
+		getline(cin, name);
+	}
+
+	string code = tokens[3];
+	while (NULL == m_controller->getModel()->getFlightByCode(code)) {
+		cout << "Please enter a valid flight code: ";
+		getline(cin, code);
+	}
+
+	string seatClass = tokens[4];
+	while ('f' != tolower(seatClass[0]) && '1' != seatClass[0] && 'e' != tolower(seatClass[0]) && '2' != seatClass[0]) {
+		cout << "Please enter a seat class: ";
+		getline(cin, seatClass);
+	}
+    
+    if (yesNoDialog("reservation: " + name + ", " + code + ", " + seatClass + "\nAre these details correct? (Y/n) ")) {
+        this->makeReservationEvent(name, code, seatClass);
+    }
+
 }
 
 void CLIView::cancellationPrompt(string _cancellation)
 {
-    cout<<"You are making a cancellation "<<_cancellation<<endl;
+	string buffer; // Have a buffer string
+	stringstream ss(_cancellation); // Insert the string into a stream
+	vector<string> tokens; // Create vector to hold the tokens
+	while (ss >> buffer)
+	{
+		tokens.push_back(buffer);
+	}
+    
+	string name = tokens[1] + " " +tokens[2];
+	while (NULL == m_controller->getModel()->getPassengerByName(name)) {
+		cout << "Please enter an existing passenger's forename and surname: ";
+		getline(cin, name);
+	}
+    
+	string code = tokens[3];
+	while (NULL == m_controller->getModel()->getFlightByCode(code)) {
+		cout << "Please enter a valid flight code: ";
+		getline(cin, code);
+	}
+    
+    if (yesNoDialog("cancellation: " + name + ", " + code + "\nAre these details correct? (Y/n) ")) {
+        this->makeCancellationEvent(name, code);
+    }
+
 }
 
 void CLIView::passengerInqPrompt(string _passengerInq)
 {
-    cout<<"You are making a passenger inquiry "<<_passengerInq<<endl;
+	
+	string buffer; // Have a buffer string
+	stringstream ss(_passengerInq); // Insert the string into a stream
+	vector<string> tokens; // Create vector to hold the tokens
+	while (ss >> buffer)
+	{
+		tokens.push_back(buffer);
+	}
+    
+	string name = tokens[1] + " " +tokens[2];
+	while (string::npos == name.find(' ',1)) {
+		cout << "Please enter a passenger forename and surname: ";
+		getline(cin, name);
+	}
+    
+    this->makePassengerInquiryEvent(name);
 }
 
 void CLIView::flightInqPrompt(string _flightInq)
 {
-    cout<<"You are making a flight inquiry"<<_flightInq<<endl;
+	string buffer; // Have a buffer string
+	stringstream ss(_flightInq); // Insert the string into a stream
+	vector<string> tokens; // Create vector to hold the tokens
+	while (ss >> buffer)
+	{
+		tokens.push_back(buffer);
+	}
+    
+	string code = tokens[1];
+	while (NULL == m_controller->getModel()->getFlightByCode(code)) {
+		cout << "Please enter a valid flight code: ";
+		getline(cin, code);
+	}
+
+    this->makeFlightInquiryEvent(code);
 }
 
 //Starting point
@@ -65,7 +138,7 @@ void CLIView::start() {
 	while(!quit) {
 		string option;
 		cout << "FRS>: ";
-		cin >> option;
+		getline(cin, option);
 		switch(tolower(option[0])) {
 			case 'r':
 				reservationPrompt(option);
@@ -79,15 +152,13 @@ void CLIView::start() {
 			case 'f':
 				flightInqPrompt(option);
 				break;
-            case 'e':
+			case 'e':
 				quit = true;
-				break;
-            case '?':
-            case 'h':
-				help();
 				break;
 			default:
 				cout << "Unrecognised command: " << option << endl;
+			case '?':
+			case 'h':
 				help();
 				break;
 		}
@@ -108,19 +179,20 @@ bool CLIView::checkAnswer(char _answer) {
 //Display one passenger's information (name)
 void CLIView::displayPassenger(Passenger* _passenger) {
 
-    if(_passenger != NULL)
-    {
-        cout << _passenger->getName() << endl;
-    }
+	if(_passenger != NULL)
+	{
+		cout << _passenger->getName() << endl;
+	}
 }
 
 //Display one flight's information (code, number of seats, time and date)
 void CLIView::displayFlight(Flight* _flight) {
 
-    if(_flight != NULL)
-    {
-        cout << _flight->getCode() << endl;
-    }
+	if(_flight != NULL)
+	{
+		cout << "Flight " << _flight->getCode() << " at " << _flight->getTime() << "hours on ";
+		cout << _flight->getDate().insert(4,"/").insert(2,"/") << endl;
+	}
 }
 
 //Display all the passengers on a flight, either waiting or in one of the available classes (first, economy)
@@ -128,11 +200,11 @@ void CLIView::displayPassengers(pair<vector<Passenger*>::iterator,vector<Passeng
 
   if(_passengers != NULL)
    {
-    vector<Passenger*>::iterator it;
-    for (it = _passengers->first; *it != *(_passengers->second); ++it)
-     {
-        displayPassenger(*it);
-     }
+	vector<Passenger*>::iterator it;
+	for (it = _passengers->first; *it != *(_passengers->second); ++it)
+	 {
+		displayPassenger(*it);
+	 }
    }
 }
 
@@ -140,12 +212,12 @@ void CLIView::displayPassengers(pair<vector<Passenger*>::iterator,vector<Passeng
 void CLIView::displayFlights(vector<Flight*>* _flights) {
 
    if(_flights != NULL)
-    {
-     vector<Flight*>::iterator it;
-     for (it = (*_flights).begin(); it != (*_flights).end(); ++it)
-     {
+	{
+	 vector<Flight*>::iterator it;
+	 for (it = (*_flights).begin(); it != (*_flights).end(); ++it)
+	 {
 		displayFlight((*it));
-     }
+	 }
    }
 }
 
@@ -169,26 +241,28 @@ void CLIView::makePassengerInquiryEvent(string _name) {
 
 //Flight Inquiry
 void CLIView::makeFlightInquiryEvent(string _code) {
-    //TODO: Make this into one function that iterates through classes and statuses
-    displayPassengers(m_controller->makeFlightInquiry(_code, Flight::First, Flight::Booked));
-    displayPassengers(m_controller->makeFlightInquiry(_code, Flight::First, Flight::Waiting));
-    displayPassengers(m_controller->makeFlightInquiry(_code, Flight::Economy, Flight::Booked));
-    displayPassengers(m_controller->makeFlightInquiry(_code, Flight::Economy, Flight::Waiting));
+	displayFlight(m_controller->getModel()->getFlightByCode(_code));
+	cout << "Passengers:" << endl;
+	//TODO: Make this into one function that iterates through classes and statuses
+	displayPassengers(m_controller->makeFlightInquiry(_code, Flight::First, Flight::Booked));
+	displayPassengers(m_controller->makeFlightInquiry(_code, Flight::First, Flight::Waiting));
+	displayPassengers(m_controller->makeFlightInquiry(_code, Flight::Economy, Flight::Booked));
+	displayPassengers(m_controller->makeFlightInquiry(_code, Flight::Economy, Flight::Waiting));
 }
 
 
 //Auxiliary methods
 bool CLIView::yesNoDialog(string _message) {
-	char option;
+	string option;
 	cout << _message;
-	cin >> option;
+	getline(cin, option);
 
-	return checkAnswer(option);
+	return checkAnswer(option[0]);
 }
 
 
 void CLIView::dialogMessage(string _message) {
-	cout << _message;
+	cout << _message << endl;
 }
 
 void CLIView::setController(Controller* _controller) {
