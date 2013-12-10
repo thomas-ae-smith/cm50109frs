@@ -39,10 +39,21 @@ Nov 26 - Tuesday
 -1 hour meeting.
 -Organised/divied up testing responsibilities.
 
-Dec 3 - Tuesday
+Dec 4 - Wednesday
 -Tested Passenger Class
 
-Dec 4 - Wednesday
+Dec 5 - Thursday
 -Group programming/meeting (3 hours)
 -Finished testing Passenger
 -Helped test Model
+
+Dec 7 - Saturday
+-Wrote project overview
+-Wrote requirements analysis
+-Wrote testing documentation
+
+Dec 9 - Monday
+-Group meeting (brief) 
+-Reviewed documentation
+-Wrote checkDate method to validate dates in file
+
