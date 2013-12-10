@@ -57,3 +57,9 @@ Dec 9 - Monday
 -Reviewed documentation
 -Wrote checkDate method to validate dates in file
 
+Dec 10 - Tuesday
+-Wrote Passenger class design
+-Wrote Model class design
+-Started Flight algorithms
+-Added Ana's table of contents to group file
+
