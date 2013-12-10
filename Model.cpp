@@ -108,8 +108,7 @@ void Model::addReservation(string _name, string _code, Flight::SeatClass _class)
  //Given a string, returns the class it corresponds to - TODO: CHECK for invalid strings
  Flight::SeatClass Model::getClass(string _class)
  {
-     if (_class=="First")
-     {
+     if ('f' == tolower(_class[0]) || '1' == tolower(_class[0])) {
          return Flight::First;
      }
      return Flight::Economy;
