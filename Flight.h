@@ -54,6 +54,9 @@ class Flight {
 //Get date of flight
     string getDate() { return m_date; }
 
+//Get time of flight
+    string getTime() { return m_time; }
+
 		
 	private:
 		string m_code; //Code of flight
