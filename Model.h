@@ -32,6 +32,9 @@ class Model {
         //Adds a new reservation to the data base
         void addReservation(string _name, string _code, Flight::SeatClass _class);
 
+        //Removes a flight from the passeger and vice versa
+        void addCancellation(string _name, string _code);
+
         //Adds a flight to the database
         void addFlight(Flight* _flight);
 

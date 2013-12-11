@@ -24,6 +24,9 @@ public:
 //Adds a reservation to the model and refreshes the view
     void addReservation(string _name, string _code, Flight::SeatClass _class);
 
+//Makes a cancellation, by accessing the model's cancellation method
+    void addCancellation(string _name, string _code);
+
 //Make a reservation by getting the info from the view and passing it to the model
     void makeReservation(string _name, string _code, string _class);
 
@@ -40,7 +43,7 @@ public:
     bool hasSameDayFlights(string _name, Flight* _flight);
 
  //Checks if the passenger is on that flight
-    bool passengerHasFlight(Passenger* _passenger, Flight* _flight);
+    bool passengerHasFlight(string _name, string _code);
 
 
 //Setters and getters
