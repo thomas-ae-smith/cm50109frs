@@ -32,6 +32,7 @@ HEADERS  += mainwindow.h \
     ../Flight.h \
     ../Controller.h \
     ../CLIView.h \
-    ../AbstractView.h
+    ../AbstractView.h \
+    ../Model.h
 
 FORMS    += mainwindow.ui
