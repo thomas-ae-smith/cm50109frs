@@ -1,0 +1,10 @@
+Meeting 10
+10/12/2013
+
+CLIView.cpp was completed on this meeting by Tom.
+We now have the CLI version of the program working.
+Emily, Lilly and Ana worked on the documentation regarding solution analysis and specifications.
+
+Next meeting: Pending
+
+

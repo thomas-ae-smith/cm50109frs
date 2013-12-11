@@ -1,0 +1,224 @@
+﻿Controller Class Specifications
+
+1) Methods 
+Note: All methods are public.
+
+
+1.1) The Controller constructor 
+
+a) Declaration
+
+Controller(Model* _model, AbstractView *_view);
+
+b) Parameters and return values
+
+Input:   Model* _model – pointer to an object of type Model
+	  AbstractView* _view – pointer to an abstract class, AbstractView  
+Output: no output
+
+c) Role
+Constructs the controller instance of the class which contains references to the model and the view of the system. The input parameters correspond to the data members of the class, to which they will be assigned.
+
+1.2) The Controller destructor
+
+a) Declaration
+
+~Controller();
+
+b) Parameters and return values
+
+Input: no input
+Output: no output
+
+c) Role
+Destroys the instance of the controller object. No memory was allocated in the constructor so none needs to be deallocated in the destructor.
+
+1.3) Add a reservation
+
+a) Declaration
+    void addReservation(string _name, string _code, Flight::SeatClass _class);
+
+b) Parameters and return values
+
+Input:  string _name – the name of the passenger making a reservation as a string
+	 string _code – the code of the flight on which he wants to make a reservation as a string
+	 Flight::SeatClass _class – the class the passenger wants to be on as a SeatClass enum type (First or Economy)
+Output: No output
+
+
+c) Role
+Calls the model to add a reservation with the input parameters, calls the view to refresh its data and displays a dialog message for to user confirming his reservation.
+
+1.4) Add a cancellation
+
+a) Declaration
+
+void Controller::addCancellation(string _name, string _code)
+
+b) Parameters and return values
+
+Input: string _name – the name of the passenger making a cancellation
+	string _code – the code of the flight the passenger wants to cancel 
+	 
+Output: no output
+
+c) Role:
+Calls the model to “add” (make) a cancellation with the given input parameters. It then calls the view to refresh the data it's displaying and then informs the user of the cancellation via a message.
+
+
+1.5) Make a reservation
+
+a) Declaration
+
+    void makeReservation(string _name, string _code, string _class);
+
+b) Parameters and return values
+
+Input: string _name – the name of the passenger making a reservation as a string
+            string _code – the code of the flight he wants to be booked on as a string
+	string _class -  the class he wants to be on (first or economy) as a string
+Output: no output
+
+c) Role
+
+This methods gets called from the view, with the information gathered there as parameters. This method is responsible for checking if a reservation can be made in the right conditions. 
+It checks if there are seats available for a particular class and offers the user different options depending on the outcome. The user can choose an economy class ticket if there are no seats available on the first class. He can also choose to be placed on a waiting list if there are no more seats available in either classes. 
+
+
+1.5) Make a cancellation
+
+a) Declaration
+
+	void makeCancellation(string _name, string _code);
+
+b) Parameters and return values
+
+Input: string _name – the name of the passenger making a cancellation of the flight as a string
+	string _code – the code of the flight the passenger wants to cancel 
+Output: no output
+
+
+c) Role
+The model is responsible for removing the flight from the passenger and the passenger from the flight, the controller checks if this operation is possible in the first place. Hence, this method first checks if the flight exists in the passenger's flight list and if it does, it calls the addCancellation method described above, which then delegates the model to make the corresponding flight removal. 
+
+		
+1.6) Make a passenger inquiry
+
+a) Declaration
+
+	vector<Flight*>* makePassengerInquiry(string _name);
+
+b) Parameters and return values
+
+Input: string _name – the name of the passenger we are making an inquiry on as a string
+Output: vector<Flight*>* - the passenger's current flight list as a pointer to a vector of flight pointers
+
+c) Role
+Delegates the model to return the passenger's flight list. This will effectively return the list of flights the passenger is booked or waiting on.
+
+
+1.7) Make flight inquiry
+
+a) Declaration
+
+    pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* makeFlightInquiry(string _code, Flight::SeatClass _class, Flight::SeatStatus _status);
+
+b) Parameters and return values
+
+Input:  string _code – the code of the flight the user is making the inquiry on as a string 
+	 Flight::SeatClass _class – the class of the flight the passenger wants as a SeatClass enum type (First, Economy)
+	Flight::SeatStatus _status – the passenger's seat status as a SeatStatus enum type (Booked, Waiting)
+
+Output:   pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>*  - a pair of iterators in a passenger vector, either from the passengers in the first class or the economy class 
+
+c) Role
+Delegates the model to return the pair of iterators in the passenger vector, by plugging in the code, seat class and status as arguments. This will effectively return the first and last iterators in the model's passenger list for passengers in the first or the economy class, either booked on the flight with the corresponding code, or waiting on it.
+
+
+1.8) Has same day flights
+
+a) Declaration
+
+    bool hasSameDayFlights(string _name, Flight* _flight);
+
+b) Parameters and return values
+
+Input: string _name – the name of the passenger as a string
+	Flight* _flight – the flight we are checking against as a pointer to a Flight object
+
+Output: bool – a boolean value with values true if the passenger has same day flights as the flight object in question and false if it does not
+
+c) Role
+The method checks if the passenger is booked or waiting on a flight whose date is the same as the date of the second _flight input parameter. 
+
+
+1.9) Passenger has flight
+
+a) Declaration
+
+    bool passengerHasFlight(string _name, string _code);
+
+b) Parameters and return values
+
+Input: string _name – the name of the passenger as a string
+	string _code – the code of the flight as a string
+Output: bool – a boolean with values true if the passenger has a flight he is booked or waiting on with the given code and false if he is not
+
+c) Role
+This method checks if a passenger is booked or waiting on a particular flight.
+
+1.10) Get model
+
+a) Declaration
+
+	Model* getModel();
+
+b) Parameters and return values
+
+Input: no input
+Output: Model* - pointer to the Model singleton object   
+
+c) Role
+Getter method – returns the value of the m_model data field, which is a pointer to the Model singleton instance
+
+1.11) Get view 
+
+a) Declaration
+
+	AbstractView* getView();
+
+b) Parameters and return values
+
+Input: no input
+Output: AbstractView* - pointer to AbstractView object 
+
+c) Role
+Getter method – returns the value of the m_view data field, which is a pointer to the AbstractView class, which is an interface, implemented by the CLIView and the GUIView classes
+
+
+2) Data
+
+Note: The data is private
+
+2.1. The model
+
+a) Declaration
+
+        Model* m_model;
+
+b) Role
+Contains a pointer to the only instance of the model class.
+
+
+2.2. The view
+
+a) Declaration 
+
+        AbstractView* m_view;
+
+b) Role
+Contains an instance of an implementation of the abstract class (interface) AbstractView, which can be either CLIView or GUIView.
+
+
+
+

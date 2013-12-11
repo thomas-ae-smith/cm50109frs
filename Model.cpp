@@ -105,9 +105,25 @@ void Model::addReservation(string _name, string _code, Flight::SeatClass _class)
     passenger->addFlight(flight);
 }
 
+//Removes a flight from the passeger and vice versa
+void Model::addCancellation(string _name, string _code)
+{
+    //Get the flight
+    Flight *auxFlight = getFlightByCode(_code);
+    //Get the passenge
+    Passenger *auxPassenger = getPassengerByName(_name);
+
+    //Remove passenger from flight
+    auxFlight->removePassenger(auxPassenger);
+
+    //Remove flight from passenger
+    auxPassenger->removeFlight(auxFlight);
+}
+
  //Given a string, returns the class it corresponds to - TODO: CHECK for invalid strings
  Flight::SeatClass Model::getClass(string _class)
  {
+     char answer = _class.c_str()[0];
      if ('f' == tolower(_class[0]) || '1' == tolower(_class[0])) {
          return Flight::First;
      }

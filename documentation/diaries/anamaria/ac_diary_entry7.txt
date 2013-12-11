@@ -1,0 +1,5 @@
+Anamaria Ciucanu - diary entry 7
+Date: 10/12/2013
+
+Wrote the specifications for the Controller.
+Refined the Controller and the Model class - made some changes in the structure of the class to increase cohesion and reduce coupling (addReservation and addCancellation for example, which just encapsulate functionalities that are repeated throughout large parts of the code).  

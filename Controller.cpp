@@ -25,32 +25,9 @@ Controller::~Controller()
 //Checks if a passenger is trying to book a flight on the same day as another flight he's already on
 bool Controller::hasSameDayFlights(string _name, Flight* _flight)
 {
-    vector<Flight*>* auxFlights = this->makePassengerInquiry(_name);
-
-    if(auxFlights!=NULL)
+    if(_flight!=NULL)
     {
-        vector<Flight*>::iterator it = auxFlights->begin();
-
-        while(it!=auxFlights->end())
-        {
-            if((*it)->getDate() == _flight->getDate())
-            {
-                return true;
-            }
-
-            it++;
-        }
-    }
-
-    return false;
-}
-
-//Checks if the passenger is on that flight
-bool Controller::passengerHasFlight(Passenger* _passenger, Flight* _flight)
-{
-    if((_passenger!=NULL) && (_flight!=NULL))
-    {
-        vector<Flight*>* auxFlights = _passenger->getFlights();
+        vector<Flight*>* auxFlights = this->makePassengerInquiry(_name);
 
         if(auxFlights!=NULL)
         {
@@ -58,7 +35,37 @@ bool Controller::passengerHasFlight(Passenger* _passenger, Flight* _flight)
 
             while(it!=auxFlights->end())
             {
-                if((*it)==_flight)
+                if((*it)->getDate() == _flight->getDate())
+                {
+                    return true;
+                }
+                it++;
+            }
+        }
+    }
+    return false;
+}
+
+//Checks if the passenger is on that flight
+bool Controller::passengerHasFlight(string _name, string _code)
+{
+    //Get the flight
+    Flight *auxFlight = m_model->getFlightByCode(_code);
+    //Get the passenge
+    Passenger *auxPassenger = m_model->getPassengerByName(_name);
+
+
+    if((auxPassenger!=NULL) && (auxFlight!=NULL))
+    {
+        vector<Flight*>* auxFlightList = auxPassenger->getFlights();
+
+        if(auxFlightList!=NULL)
+        {
+            vector<Flight*>::iterator it = auxFlightList->begin();
+
+            while(it!=auxFlightList->end())
+            {
+                if(*it == auxFlight)
                 {
                     return true;
                 }
@@ -77,6 +84,14 @@ void Controller::addReservation(string _name, string _code, Flight::SeatClass _c
     m_view->dialogMessage("Success, you were added on the flight! \n");
 }
 
+//Makes a cancellation, by accessing the model's cancellation method
+void Controller::addCancellation(string _name, string _code)
+{
+    m_model->addCancellation(_name, _code);
+    m_view->refresh();
+    m_view->dialogMessage("Success, you were removed from the flight!");
+}
+
 //Makes a reservation: Adds a person on a flight and a flight to a person
 void Controller::makeReservation(string _name, string _code, string _class)
 {
@@ -84,8 +99,8 @@ void Controller::makeReservation(string _name, string _code, string _class)
     Flight *auxFlight = m_model->getFlightByCode(_code);
     Flight::SeatClass auxClass = m_model->getClass(_class);
 
-    //Check for availability of flight, else protest
-    if ((auxFlight != NULL) && !hasSameDayFlights(_name, auxFlight))
+    //Check
+    if (!hasSameDayFlights(_name, auxFlight))
     {	
         //checks the flight options and puts the passenger on a waiting list if needed
         int check = auxFlight->getSeatAvailability(auxClass);
@@ -161,7 +176,7 @@ void Controller::makeReservation(string _name, string _code, string _class)
     else
     {
         //TODO: Think of a way of logging errors and exceptions
-        m_view->dialogMessage("The flight does not exist or is on some day as another flight.\n");
+        m_view->dialogMessage("The flight is on the same day as another flight you are booked on or it doesn't exist .\n");
     }
 }
 
@@ -169,20 +184,9 @@ void Controller::makeReservation(string _name, string _code, string _class)
 //Removes a person from the flight
 void Controller::makeCancellation(string _name, string _code)
 {      
-    //Get the flight
-    Flight *auxFlight = m_model->getFlightByCode(_code);
-    //Get the passenge
-    Passenger *auxPassenger = m_model->getPassengerByName(_name);
-
-    if(passengerHasFlight(auxPassenger, auxFlight))
+    if(passengerHasFlight(_name, _code))
     {
-        //Remove passenger from flight
-        auxFlight->removePassenger(auxPassenger);
-
-        //Remove flight from passenger
-        auxPassenger->removeFlight(auxFlight);
-        m_view->dialogMessage("Success, you were removed from the flight!");
-        m_view->refresh();
+        this->addCancellation(_name, _code);
     }
     else
     {
