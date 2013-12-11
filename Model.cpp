@@ -25,6 +25,7 @@ Model::Model(){
     int seats;
     string flightCode, flightTime, flightDate;
     char auxCode[16], auxTime[16], auxDate[16];
+	bool checker = false;
 
     //ifstream constructor opens file
     ifstream inFlightFile;
@@ -39,8 +40,10 @@ Model::Model(){
     {
         while(getline(inFlightFile, line))
         {
-           //The sscanf needs char* instead of strings
-            if (sscanf(line.c_str(), "%s %d %s %s", auxCode, &seats, auxTime, auxDate) !=4)
+           //Obs! The sscanf needs char* instead of strings
+			checker = sscanf(line.c_str(), "%s %d %s %s", auxCode, &seats, auxTime, auxDate) !=4 ? true : false;
+
+            if (checker && !checkDate(auxDate))
             {
               cerr << "Found problem on line: \'" << line << "\', skipping." << endl;
               continue;
@@ -69,6 +72,33 @@ void Model::cleanUp()
 {
     delete s_model;
     s_model = NULL;
+}
+
+//Check if the date is a valid one 
+bool Model::checkDate (string date)
+{
+  int daysPerMonth[12] = {31, 29, 31, 30, 31,30, 31, 31, 30, 31, 30, 31};
+  int dayNum, monthNum;
+
+  string day = date.substr (0,2);
+  string month = date.substr (2,2);
+
+  istringstream ( day ) >> dayNum;
+  istringstream ( month ) >> monthNum;
+
+  if ( monthNum > 12 || monthNum < 1){
+     cerr<<"Invalid date";
+     return false;
+  }
+  else {
+     if (daysPerMonth[monthNum - 1] >= dayNum && dayNum > 0){
+      return true;
+     }
+     else{
+      cerr << "Invalid date.";
+      return false;
+     }
+  }
 }
 
 //Get flight from the map using fight code as the key
@@ -123,7 +153,6 @@ void Model::addCancellation(string _name, string _code)
  //Given a string, returns the class it corresponds to - TODO: CHECK for invalid strings
  Flight::SeatClass Model::getClass(string _class)
  {
-     char answer = _class.c_str()[0];
      if ('f' == tolower(_class[0]) || '1' == tolower(_class[0])) {
          return Flight::First;
      }
