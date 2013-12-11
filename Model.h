@@ -53,6 +53,9 @@ class Model {
         //Get a pointer to all the flights
         map<string, Flight*>* getFlights();
 
+		//Check if the date given is valid
+		bool checkDate(string _date);
+
 
 
 	private:
