@@ -63,3 +63,7 @@ Dec 10 - Tuesday
 -Started Flight algorithms
 -Added Ana's table of contents to group file
 
+Dec 11 - Wednesday
+-Wrote class design for Flight, Ab. View, CLI and GUI
+-Finished Flight algorithms
+

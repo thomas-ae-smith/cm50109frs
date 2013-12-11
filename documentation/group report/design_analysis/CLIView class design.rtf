@@ -1,0 +1,345 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Times New Roman;}{\f1\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 6.2.9200}\viewkind4\uc1 
+\pard\b\f0\fs28 CLIView Class Specification\par
+\b0 ???what's the stuff at the top????\par
+\fs22\par
+\b\fs28 1 Methods\par
+\b0\fs22 Note:  All methods are public.\par
+\par
+\b\fs26 1.01 Constructor\par
+\fs22\par
+a) Declaration: \par
+
+\pard\qc\b0   CLIView();\par
+
+\pard\b b) Parameters and Return Value:  \par
+\b0     Parameters: Nothing.\par
+    Return value:  Nothing.\par
+\par
+\b c) Role: \par
+\b0 Creates an instance of CLIView\par
+\par
+\par
+\b\fs26 1.02 Deconstructor\par
+\fs22\par
+a) Declaration: \par
+
+\pard\qc\b0  ~ CLIView();\par
+
+\pard\b b) Parameters and Return Value:  \par
+\b0     Parameters: Nothing.\par
+    Return value:  Nothing.\par
+\par
+\b c) Role: \par
+\b0 Destroys an instance of CLIView\par
+\par
+\par
+\par
+\b\fs26 1.03 Help\par
+\fs22\par
+a) Declaration: \par
+
+\pard\qc\b0     void help();\par
+
+\pard\b b) Parameters and Return Value:  \par
+\b0     Parameters: Nothing.\par
+    Return value:  Nothing.\par
+\par
+\b c) Role: \par
+\b0 Help for the user.\par
+\par
+\b\fs26\par
+1.04 Start\par
+\fs22\par
+a) Declaration: \par
+
+\pard\qc\b0\tab void start();\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters:Nothing\par
+    Return value:  Nothing.\par
+\par
+\b c) Role:  \par
+\b0 The starting point of the view.\par
+\par
+\b\fs26\par
+1.05 Refresh\par
+\fs22\par
+a) Declaration: \par
+
+\pard\qc\b0 void refresh();\par
+\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters:Nothing\par
+    Return value:  Nothing.\par
+\par
+\b c) Role:  \par
+\b0 Updates the view with the most recent information.\par
+\par
+\b\fs26 1.06 displayPassenger\par
+\fs22\par
+a) Declaration: \par
+
+\pard\qc\b0 void displayPassenger(Passenger* _passenger);\par
+\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A Passenger pointer\par
+    Return value: Nothing\par
+\par
+\b c) Role:  \par
+\b0 Displays the information associated with an instance of Passenger.\par
+\par
+\par
+\par
+\b\fs26 1.07 displayFlight \par
+\fs22\par
+a) Declaration: \par
+
+\pard\qc\b0  void displayFlight(Flight* _flight);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A Flight pointer\par
+    Return value: Nothing\par
+\par
+\b c) Role:  \par
+\b0 Displays the information associated with an instance of Flight.\par
+\par
+\par
+\b\fs26 1.08 displayPassengers\par
+\fs22\par
+a) Declaration: \par
+
+\pard\qc\b0 void displayPassengers(pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* _passengers);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A pointer to a pair of iterators for a vector of Passenger pointers.\par
+    Return value: Nothing.\par
+\par
+\b c) Role:  \par
+\b0 Displays all the passengers on a flight, booked or waiting.\par
+\par
+\par
+\b\fs26 1.09 displayFlights\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0 void displayFlights(vector<Flight*>* _flights);\par
+
+\pard\par
+\b b) Parameters and Return Value: \par
+\b0     Parameters: A pointer to a vector of Flight pointers\par
+    Return value: Nothing.\par
+\par
+\b c) Role:  \par
+\b0 Displays all flights associated with an instance of Passenger.\par
+\par
+\par
+\b\fs26 1.10 reservationPrompt\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0 void reservationPrompt(string _reservation);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A string.\par
+    Return value: Nothing.\par
+\par
+\b c) Role:  \par
+\b0 reads in strings from the user and will make calls to the makeReservation method \par
+\par
+\par
+\b\fs26 1.11 cancellationPrompt\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0 void cancellationPrompt(string _cancellation);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A string.\par
+    Return value: Nothing.\par
+\par
+\b c) Role:  \par
+\b0 reads in strings from the user and will make calls to the makeCancellation method.\par
+\par
+\par
+\par
+\b\fs26 1.12\fs28  passengerInqPrompt\fs26\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0 void passengerInqPrompt(string _passengerInq);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A string.\par
+    Return value: Nothing.\par
+\par
+\b c) Role:  \par
+\b0 reads in strings from the user and will make calls to the makePassengerInquiry method.\par
+\par
+\par
+\b\fs28 1.13 flightInqPrompt\fs26\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0 void flightInqPrompt(string _flightInq);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A string.\par
+    Return value: Nothing.\par
+\par
+\b c) Role:  \par
+\b0 reads in strings from the user and will make calls to the makeFlightInquiry method.\par
+\par
+\par
+\par
+\b\fs26 1.14 makeReservationEvent\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0  void makeReservationEvent(string _name, string _code, string _class);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A string representing a passenger, a string representing a flight code, a string representing a class of seat.\par
+    Return value: Nothing.\par
+\par
+\b c) Role:  \par
+\b0 Takes information from the user interface and initiates a flight reservation.\par
+\par
+\par
+\b\fs26 1.15 makeCancellationEvent\par
+\fs22\par
+a) Declaration: \par
+\par
+\b0     void makeCancellationEvent(string _name, string _code) ;\par
+\b b) Parameters and Return Value: \par
+\b0     Parameters: A string representing a passenger, and a string representing a flight code\par
+    Return value: Nothing.\par
+\par
+\b c) Role:  \par
+\b0 Takes information from the user interface and initiates a flight cancellation.\par
+\par
+\par
+\b\fs26 1.16 makePassengerInquiryEvent\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0 void makePassengerInquiryEvent(string _name);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A string representing a passenger\par
+    Return value: Nothing.\par
+\par
+\b c) Role:  \par
+\b0 Takes information from the user interface and initiates a Passenger inquiry.\par
+\par
+\par
+\par
+\b\fs26 1.17 makeFlightInquiryEvent\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0  void makeFlightInquiryEvent(string _code);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A string representing a flight code\par
+    Return value: Nothing.\par
+\par
+\b c) Role:  \par
+\b0 Takes information from the user interface and initiates a Flight inquiry.\par
+\par
+\b\fs26 1.18 checkAnswer\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0   bool checkAnswer(char _answer);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A character.\par
+    Return value:  True or false.\par
+\par
+\b c) Role:  \par
+\b0 Checks if input from the user is yes or no.\par
+\par
+\par
+\b\fs26 1.19 yesNoDialog\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0 bool yesNoDialog(string _message);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A string.\par
+    Return value:  True or false.\par
+\par
+\b c) Role:  \par
+\b0 ??????????????????????????????????\par
+\par
+\par
+\b\fs26 1.20 dialogMessage\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0  void dialogMessage(string _message);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A string.\par
+    Return value:  Nothing\par
+\par
+\b c) Role:  \par
+\b0 ?????????????????puts out a message?????????????????\par
+\par
+\par
+\b\fs26 1.21 setController\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0 void setController(Controller* _controller);\par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: A Controller pointer\par
+    Return value:  Nothing\par
+\par
+\b c) Role:  \par
+\b0 Setter for the controller\par
+\par
+\par
+\b\fs26 1.22 getController\par
+\fs22\par
+a) Declaration: \par
+\par
+
+\pard\qc\b0 Controller* getController();    \par
+
+\pard\b b) Parameters and Return Value: \par
+\b0     Parameters: Nothing\par
+    Return value:  Controller pointer\par
+\par
+\par
+\b c) Role:  \par
+\b0 Returns a pointer to the controller.\par
+\par
+\par
+\par
+\b\fs28 2 Data\par
+\b0\fs22 Note: This data is private\par
+\par
+\b 2.1 m_controller\par
+\b0 This is a Controller pointer.\par
+
+\pard\sa200\sl276\slmult1\f1\lang9\par
+}
+ 
