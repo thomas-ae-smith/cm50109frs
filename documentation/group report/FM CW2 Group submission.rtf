@@ -1,6 +1,6 @@
 {\rtf1\ansi\ansicpg936\cocoartf1265
-{\fonttbl\f0\fnil\fcharset0 Calibri;\f1\fmodern\fcharset0 Courier;\f2\froman\fcharset0 Times-Roman;
-\f3\fswiss\fcharset0 Helvetica;}
+{\fonttbl\f0\fnil\fcharset0 Calibri;\f1\fswiss\fcharset0 Helvetica;\f2\froman\fcharset0 Times-Roman;
+\f3\fnil\fcharset134 STHeitiSC-Light;}
 {\colortbl;\red255\green255\blue255;}
 \paperw11900\paperh16840\vieww12000\viewh13500\viewkind0
 \deftab720
@@ -57,23 +57,19 @@ We created an abstract view with multiple implementations\
 data robustness; checks each line the file for validity\
 Make sure you mention (here or in section 6) how we met all the requirements from Section 4. \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
-
-\f1\fs32 \cf0 \expnd0\expndtw0\kerning0
-1.To read flight information from a text file,including flight code,seating capacity, flight time,flight date with various spaces but in a constant,we use the IO mechanism to read file line by line,and for each line read,extracting every attribute of the flight and store individual flight information into a map.\
+\cf0 1.To read flight information from a text file,including flight code,seating capacity, flight time,flight date with various spaces but in a constant,we use the IO mechanism to read file line by line,and for each line read,extracting every attribute of the flight and store individual flight information into a map.\
 2.To deal with the of flight information, we build a independent Flight class to envelop the attributes of flight and methods in charge of adding,removing,checking passengers of different seat class on its flight.\
 3.To decide the seats of the flight into first class and economy class according to a certain allocation, flight itself should know the how many seats of different class still available to decide further passenger handling operation.  \
 4.By inputing one\'92s name,he/she should have their own attributes and methods to form a passenger instance to hide implementation details to be modular. One Flight can have many passengers on board with different class, while one passenger can be added/removed on different Flight in different queue. The flight and passenger should be interleaves. When adding/removing passenger of a flight,that flight should also be added/deleted on the flight list of that passenger.\
 5. To achieve abstraction and modularization, we use Model-View-Controller pattern as the framework of the system. Model,as a directory containing data of flights and passengers,stores  as well the data structure of separately stored flights and passengers to facilitate the inquiry.In order to make inquiry, either passenger inquiry or flight inquiry,by specifying the inquiry type,the controller do the action of inquire and then accessing the model to get further pointer to flights or passengers. Controller, convert the command that can be further implemented by model to view. View here to display output of system.\
 6.There are 5 scenarios of passengers :booked in first class  waiting for first class,booked in economy class ,waiting for economy class and fail to add. To decide which queue the passenger should be added on, calculation in the chain about how many available of seats of each type about either the required seats expires or not. We use Enum to enumerate seat class type to help calculate.Enum is reusable and also a way to realize abstraction.\
-\
-\
 7.Consider the system only hold on database,we adopt Singleton Pattern to make Model to ensure Model has only one instance, and provide a global point of access to it.\
 8.To realize the removal of  a booked passenger,using the input name as a key to search in the stored database,if there\'92s a matching passenger,delete it from the passenger map and the flight map as well, these changes will reflected by the view associated with model through controller.\
-9.To provide an interface to user to interact,view is responsible for the interface and display.Abstraction is achieved by inhabitation.By integrating the common attributes and functions to be achieved ,we abstract an abstract view providing shared attributes and methods, and interface to allow 2 implementations as well.
+9.To provide an interface to user to interact,view is responsible for the interface and display.Abstraction is achieved by inhabitation.By integrating the common attributes and functions to be achieved ,we abstract an abstract view providing shared attributes and methods, and interface to allow 2 implementations as we
+\f1\fs32 \expnd0\expndtw0\kerning0
+ll.
 \f2\fs24 \expnd0\expndtw0\kerning0
 \
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
-\cf0 \expnd0\expndtw0\kerning0
 \
 \pard\pardeftab720\sl276\slmult1\sa200
 
@@ -92,21 +88,46 @@ class Controller, where the main operation of the system implements, is designed
 class View, where the interface is provided and information is displayed.  It is designed to be able to display passengers on a specific flight, booked or waiting flights a passenger is on, take the passenger name as input to send to Controller to implement add/inquiry/remove flights , take the flight code/flight date as input to send to Controller to inquiring passengers on board/add passengers/ remove passengers. The view is designed to follow rules of abstraction by inheritance, providing a template (abstract view) for function to be implement in 2  inherited class, CLIview and GUIView, realizing the code reuse.\
 \pard\pardeftab720\sl276\slmult1\sa200
 
-\f0\fs22 \cf0 \kerning1\expnd0\expndtw0 Design of class Model\
+\f0\fs22 \cf0 \kerning1\expnd0\expndtw0 Module 1:Model\
+Design of class Model\
 1.Singleton\
 Model is universal across the system,by doing this,the system will operate more efficiently and restrict the instantiation to many objects.Isolating from the unpredictability of the order of dynamic initialization, easy to control.\
 2.Using Map &Multimap\
 To implement the passenger and flight inquiry,a sorted container is needed,here we choose map for inquiry of passenger by name and flight by flight number,multimap for inquiry of flight by date. Both of them storing the data as the format pair<key,value>.map is sorted and one-to-one while multimap is one to many. Since the number of flights on a single date is more than one,we use multimap to handle the date inquiry.\
+\
 Design of class Passenger\
 \
 Design of class Flight\
-\
+Module 2 :Controller\
 Design of class Controller\
 \
+Module 3
+\f3 \'a3\'ba
+\f0 View\
 Design of class View,CLIView and GUIView\
+\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
 
-\f3\fs20 \cf0 \expnd0\expndtw0\kerning0
+\f2\fs24 \cf0 \expnd0\expndtw0\kerning0
+Flow of achievement(make reservation,make cancellation,passenger inquiry,flight inquiry)\
+MakeReservation:\
+Diagram here\
+In the user interface panel,user types name in to the text field,click a flight on the displayed flight list,specify the preferred seat class and click make-reservation,the method makeReservationEvent will be called ,followed  the call of the method makeReservation in controller,further call the getFlightCode method in model with flight code as key to find the exactly designated flight,then followed by a series of logic  using if else as below.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
+\cf0 \expnd0\expndtw0\kerning0
+MakeCancellation:\
+Diagram here\
+Make Passenger Inquiry:\
+Diagram here\
+Make Flight Inquiry:\
+Diagram here\expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl276\slmult1\sa200
+
+\f0\fs22 \cf0 \kerning1\expnd0\expndtw0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
+
+\f1\fs20 \cf0 \expnd0\expndtw0\kerning0
 1
 \f0\b\fs22 \kerning1\expnd0\expndtw0 Section 7: User Guide\
 \pard\pardeftab720\sl276\slmult1\sa200
