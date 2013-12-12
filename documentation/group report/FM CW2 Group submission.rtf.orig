@@ -1,0 +1,138 @@
+{\rtf1\ansi\ansicpg936\cocoartf1265
+{\fonttbl\f0\fnil\fcharset0 Calibri;\f1\fswiss\fcharset0 Helvetica;\f2\fmodern\fcharset0 Courier;
+\f3\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\vieww12000\viewh13500\viewkind0
+\deftab720
+\pard\pardeftab720\sl276\slmult1\sa200
+
+\f0\fs22 \cf0 Group submission.  \
+\
+
+\fs28 Document 1:\
+
+\b\fs22 Front page:\
+\pard\pardeftab720\sl276\slmult1\sa200\qc
+
+\b0 \cf0 Sunny Programmers:\
+Anamaria Ciucanu\
+Tom Smith\
+Yaping Lang\
+Emily Huffman\
+\pard\pardeftab720\sl276\slmult1\sa200
+\cf0 \
+
+\b Second page:\
+
+\b0 Submission sheet.\
+\
+___what tense are we using?___\
+
+\b Section 3: Project Overview\
+
+\b0 The goal is to create a flight reservation system with tools for reserving and cancelling flights, and making inquiries about passengers and flights.  The system is composed of five classes: Flight, Passenger,  Model,  Controller, and Abstract View, which was extended into command line and graphical user interface views.  Each programmer was responsible for implementing one or two of these classes, though feedback from all programmers was given for all classes. Tom Smith implemented the Flight class and CLIView, Emily Huffman the Passenger class, Yaping Lang the Model and Anamaria Ciucanu the GUIView and Controller.  Each programmer was also responsible for the testing of their own classes.  Integration and regretion testing were also done in group meetings.  \
+\
+
+\b Section 4: Requirements analysis and specification.\
+
+\b0 At the beginning of the project, we were given a written list of user requirements.  After carefully reading and annotating this list, we used Class Responsibility and Collaboration cards to determine which classes our system would require.  From these cards, we created a class diagram.  \
+Our team determined that the system must be able to perform the following tasks:\
+R1: Read flight information, consisting of a flight code, seating capacity, flight time, and flight date, from a text file.\
+R2: Create individual flights using the information in the flight information file.\
+R3: Create individual passengers from manually input names.\
+R4: Calculate the  number of seats in first and economy class for each flight using the seating capacity in the flight information  file.\
+R5: Reserve a seat on an individual flight in either first or economy class for an individual passenger, provided that passenger is not already booked on a flight with the same departure date.\
+R6: Maintain lists of booked and waiting passengers for first and economy class on every flight.\
+R7: Remove a booked or waiting passenger from an individual flight.\
+R8: Display all reserved flights, including waiting status and class, for a particular passenger.\
+R9: Display the passenger lists for each class, passenger waiting statuses, flight time and flight date of an individual flight.\
+R10: Perform the following actions when promted by a user: Reserve a flight for a passenger, cancel a flight reservation for a passenger, display information on a flight with a particular code, display information on a passenger with a particular name.\
+R11: Interface with users in a clear and simple manner.\
+\
+
+\b Section 5: Solution analysis\
+
+\b0 Lily, please mention these things:\
+We created an abstract view with multiple implementations\
+data robustness; checks each line the file for validity\
+Make sure you mention (here or in section 6) how we met all the requirements from Section 4. \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
+
+\f1\fs20 \cf0 \expnd0\expndtw0\kerning0
+1.To read flight information from a text file,including flight code,seating capacity, flight time,flight date with various spaces but in a constant,we use the IO mechanism to read file line by line,and for each line read,extracting every attribute of the flight and store individual flight information into a map.\
+2.To deal with the of flight information, we build a independent Flight class to envelop the attributes of flight and methods in charge of adding,removing,checking passengers of different seat class on its flight.\
+3.To separate the seats of the flight into first class and economy class according to a certain collocation, flight itself should know the how many seats of different class still available to decide further passenger handling operation.  \
+4.By inputing one\'92s name,he/she should have their own attributes and methods to form a passenger instance to hide implementation details to be more adaptable. One Flight can have many passengers on board with different class, while one passenger can be added/removed on different Flight in different queue. The flight and passenger should be interleaves. When adding/removing passenger of a flight,that flight should also be added/deleted on the flight list of that passenger.\
+5. To achieve abstraction and modularization, we use Model-View-Controller pattern as the framework of the system. Model,as a directory containing data of flights and passengers,stores  as well the data structure of separately stored flights and passengers to facilitate the inquiry.In order to make inquiry, either passenger inquiry or flight inquiry,by specifying the inquiry type,the controller do the action of inquire and then accessing the model to get further pointer to flights or passengers. Controller, convert the command that can be further implemented by model to view. View here to display output of system.\
+6.To decide which queue the passenger should be added on, get the 5 scenarios:booked in first class  waiting for first class,booked in economy class ,waiting for economy class and fail to add. To go over the decision, calculation in the chain about how many available of seats of each type about either the required seats expires or not. We use Enum to enumerate seat class type to help calculate.Enum is also a way to abstraction.\
+7. simplify model. seat number thing\
+8.data abstraction,vector,map\
+9.without knowing what stores in model, access about from controller\
+10.virtual constructor\
+11.To achieve implementations of display,we use the an abstraction  View and its 2 implementation in separate class hierarchies.\
+13.using multiple inheritance\
+14.
+\f2 \expnd0\expndtw0\kerning0
+Consider the system only hold on database,we adopt Singleton Pattern to make Model to ensure Model has only one instance, and provide a global point of access to it.
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl276\slmult1\sa200
+
+\f0\b\fs22 \cf0 \kerning1\expnd0\expndtw0 Section 6: System Design\
+
+\b0 Lily\
+Describe the system overall.\
+Everyone has written a small design of their own class that you can include later.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
+
+\f1\fs20 \cf0 \expnd0\expndtw0\kerning0
+1
+\f0\b\fs22 \kerning1\expnd0\expndtw0 Section 7: User Guide\
+\pard\pardeftab720\sl276\slmult1\sa200
+
+\b0 \cf0 ~~~~~~\
+\
+
+\fs28 Document 2:\
+
+\b\fs22 Front page:\
+\pard\pardeftab720\sl276\slmult1\sa200\qc
+
+\b0 \cf0 Sunny Programmers\
+Anamaria A\
+Tom Smith\
+Yaping Lang\
+Emily Huffman\
+\pard\pardeftab720\sl276\slmult1\sa200
+\cf0 \
+
+\b Second page:\
+
+\b0 Submission sheet.\
+\
+
+\b Section 3: Test Plans and Results\
+3.1 Testing of individual classes:\
+
+\b0 The testing of each class was handled by its programmer.  Each programmer created a test harness for their class and monitored the output.    \
+
+\b 3.2 Testing of the Full System\
+
+\b0 Integration testing was performed to ensure that all components of the system worked together.  Regretion testing was performed after any system changes.  Anamaria Ciucanu created the "FCGDATA" file (containing flight codes, seating capacities, times and dates) which we used to create flights in the system.  We then used both the CLIView and GUIView to add and remove passengers from flights and make inquiries abouts flights and passengers.\
+\
+
+\b Section 4:  Maintenance Guide\
+~~~~~~\
+
+\b0 \
+
+\b Section 5: The Code\
+We have this already.\
+
+\b0 \
+
+\b Section 6: Flash drive.\
+We will have this soon.\
+
+\b0 \
+}

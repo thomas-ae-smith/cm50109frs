@@ -93,6 +93,7 @@ Design of class Model\
 1.Singleton\
 Model is universal across the system,by doing this,the system will operate more efficiently and restrict the instantiation to many objects.Isolating from the unpredictability of the order of dynamic initialization, easy to control.\
 2.Using Map &Multimap\
+A picture for explain here.\
 To implement the passenger and flight inquiry,a sorted container is needed,here we choose map for inquiry of passenger by name and flight by flight number,multimap for inquiry of flight by date. Both of them storing the data as the format pair<key,value>.map is sorted and one-to-one while multimap is one to many. Since the number of flights on a single date is more than one,we use multimap to handle the date inquiry.\
 \
 Design of class Passenger\
@@ -112,15 +113,25 @@ Design of class View,CLIView and GUIView\
 Flow of achievement(make reservation,make cancellation,passenger inquiry,flight inquiry)\
 MakeReservation:\
 Diagram here\
-In the user interface panel,user types name in to the text field,click a flight on the displayed flight list,specify the preferred seat class and click make-reservation,the method makeReservationEvent will be called ,followed  the call of the method makeReservation in controller,further call the getFlightCode method in model with flight code as key to find the exactly designated flight,then followed by a series of logic  using if else as below.\
+In the user interface panel,user types name in to the text field,click a flight on the displayed flight list,specify the preferred seat class and click make-reservation,the method makeReservationEvent will be called ,followed  the call of the method makeReservation in controller,further call the getFlightCode method in model with flight code as key to find the exactly designated flight,then followed by a series of logic  to call addReservation whenever the contain is met. In the adding process, the interaction with user asking user for yes/on decision is implemented in View module, calling method yesNoDialog and dialogMessage().(reservation diagram and decision tree insert here).\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
 \cf0 \expnd0\expndtw0\kerning0
 MakeCancellation:\
 Diagram here\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
+\cf0 \expnd0\expndtw0\kerning0
+In the user interface,choose one passenger on the list by clicking on it, and click make cancellation ,then the makeCancellationEvent in GUIView/CLIView is called,further calling the method makeCancellation in class Model, the output is then used to decide whether the passenger has flight or not by calling method passengerHasFlight.If the boolean value it returns is false, call method displayMessage to display the error massage, otherwise, do cancellation by addCancellation in Controller which further triggers the addCancellation in Model to do the real removal of flight from flight list of that passenger.  Then the view refreshes and pop up updated message.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
+\cf0 \expnd0\expndtw0\kerning0
+\
 Make Passenger Inquiry:\
 Diagram here\
+In User Interface, choose a passenger from the displayed passenger list by clicking on it ,and then click to display flights this passenger\'92s on, including the status. First the method makePassengerInquiry is called, further asking for getModel() method in Controller to get access to the passenger details through class model. By implementing getPassegnerbyName of class model, a pointer to passenger is returned.  Having found the specified passenger, we call getFlights method to get the flight list of this passenger, then transmitting these information to the view to display.\
 Make Flight Inquiry:\
-Diagram here\expnd0\expndtw0\kerning0
+Diagram here\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\sa240\pardirnatural
+\cf0 \expnd0\expndtw0\kerning0
+In user interface, choose a flight from the displayed flights list by clicking on it, and them click to display passengers on this flight. At first the method makePassengerInquiryEvent is called, further asking for getModel() method in class Controller to get access to the flight details through class model. By implementing getFlightByCode of the class model, we get access to the specified flight details. By calling the getCode method in class Flight, using the return value as parameter of makeFlightInquiry in class Controller. along with 2 other parameters\'97seat class type and booking status\'97to get the passenger of each type on this flight, and then display the result.\
 \
 \pard\pardeftab720\sl276\slmult1\sa200
 
@@ -133,9 +144,11 @@ Diagram here\expnd0\expndtw0\kerning0
 \pard\pardeftab720\sl276\slmult1\sa200
 
 \b0 \cf0 ~~~~~~\
-\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 \
+\pard\pardeftab720\sl276\slmult1\sa200
 
-\fs28 Document 2:\
+\fs28 \cf0 Document 2:\
 
 \b\fs22 Front page:\
 \pard\pardeftab720\sl276\slmult1\sa200\qc
