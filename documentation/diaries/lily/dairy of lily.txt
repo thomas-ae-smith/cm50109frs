@@ -1,0 +1,70 @@
+
+11.12
+1.Group meeting to figure out the classed we need, list the attributes and methods may be needed in each class
+2.Distribute the programming duty to every one, I was responsible for Model class
+3.Write Model.h with data and method discussed while inquiring.
+
+11.13
+1.Complete the first  model.cpp according to the model.h
+2.Encounter problems with commit changes to Bitbucket.
+3.Looked up c++ doc for how to use map and multimap
+
+11.14
+1.Group meeting.Pair-programming with Tom to modify the Model.cpp
+2.Know how to correctly commit,pull and push the changes to the repository.
+
+11.18 
+group meeting. add functionality to Model.cpp read file contains the flight information.
+read how to implement read ,open using ifstream.
+
+11.19
+1.download google test source and .add framework to the project.stuck at the add shell tool target step,so turn to using Xcode unit test bundle. 
+2.correct some errors  and commit
+3.fail to import the existing cm50109frs repository to Xcode. search approaches quite a long time on internet but no right results.
+4.read examples how the unit test runs,basically assert .also mock object
+
+
+11.20 
+group meeting.figure out what to do next at the friday meeting.reading documentation requirement.
+
+11.22
+Group meeting,review the finished code,adding comment and some bug-fixing
+
+11.25
+Group meeting for debugging again.
+
+11.26
+Group meeting for distributing testing task. Each one is responsible for the class he/she writes before
+
+11.28
+1.Search for test method
+2.Look up how to write c++ harness online, still confused
+
+12.5
+1.group meeting
+2.write harness class for model as a way of whote-box testing
+
+12.6
+1.modification to the model_harness.cpp 
+2.problem found in getFlightByDate method,Tom fixed the wired mistake.
+ 
+12.9
+1.Group meeting
+2.Go over the documentation requirement
+
+12.10
+1.Group meeting
+2.Writing the analysis of how to solve problem according to the requirement analysis
+3.Distribution of left  out work.
+
+12.11
+1.Work on the analysis of how to solve problem according to the requirement
+2.Review the slides about data abstraction
+3.Write the abstraction approach we have used in the system
+
+12.12
+1.Write the overall structure design of the system,explain the 3 modules of the system
+2.Write description on how to implement 4 four functions the system offered.
+3.Draw diagram for each function to show the flow the method calling
+4.Add analysis of algorithm in class Model.
+5.Add design analysis of the class Model.
