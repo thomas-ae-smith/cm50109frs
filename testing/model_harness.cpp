@@ -2,87 +2,95 @@
 #include "Passenger.h"
 #include "Model.h"
 #include <iostream>
+using namespace std;
 
-//Testing the flight class and its methods
+//Testing the model class and its methods
 
 int main()
 {
-    Model();
-    map<string,Passenger*> m_passengers;
-    map<string,Flight*> m_flightByCode;
-    multimap<string,Flight*> m_flightByDate;
+        //Constrctor
+        Model();
+        //Map of all passengers, sorted by name
+        map<string,Passenger*> m_passengers;
+        
+        //Map of all flights, sorted by code
+        map<string,Flight*> m_flightByCode;
+        
+        //Multimap of all flights, sorted by date
+        multimap<string,Flight*> m_flightByDate;
+        
+        //construct a flight
+        Flight* flight1 = new Flight("Code1", "0900", "25102012", 10);
+        Flight* flight2 = new Flight("Code2", "1000","25112013",10);
+        Flight* flight3 = new Flight("Code3","1100","25112013",10);
+        Flight* flight4 = new Flight("Code4","1200","25112013",10);
+        
+        Model* my_model = Model::getModel();
+        
+        //Adds a flight to the database
+        //test adding flight to map
+        cout<< "Adding flights to flight map"<< endl;
+        my_model->addFlight(flight1);
+        my_model->addFlight(flight2);
+        my_model->addFlight(flight3);
+        my_model->addFlight(flight4);
+        
+        //Add a new passeger to the passenger map
+        //test adding passenger to map
+        
+        my_model->addReservation("Tom","Code1",Flight::First);
+        my_model->addReservation("Tom","Code2",Flight::First);
+        my_model->addReservation("John","Code1",Flight::First);
+        my_model->addReservation("Raj","Code1", Flight::Economy);
+        
+        //Returns a flight by its code
+        cout<< "testing getFlightByCode.Code1 0900 25102012 10seats"<<endl;
+        Flight* t_flightByCode=my_model->getFlightByCode("Code1");
+        cout<<"The returned flight is"<<endl;
+        cout<<t_flightByCode->getCode()<<"  "<<t_flightByCode->getDate()<<endl;
+        cout<<t_flightByCode->getSeatAvailability(Flight::First)<<endl;
+        
+        //Get a pointer to a vector of flights on the same date
+        cout<< "testing getFlightByDate,there are 3 flights on the date 25112013,"<<endl;
+        vector<Flight*>* t_flightByDate = my_model->getFlightsByDate("25112013");
+        if(t_flightByDate!= nullptr）){
+            cout<<"Return valueis not nullptr.Going into the loop now.\n"<<endl;
+            for(vector<Flight*>::iterator it1 = (*t_flightByDate).begin(); it1 != (*t_flightByDate).end(); ++it1) {
+                cout<< "Code: "<<(*it1)->getCode()<<" "<<"Date "<<(*it1)->getDate()<<endl;
+            }
+        }
+        
+        //Returns a passenger by name
+        cout<<"Testing getPassengerByName"<<endl;
+        Passenger* t_passengerByName = my_model->getPassengerByName("Tom");
+        cout<< t_passengerByName->getName()<<endl;
+        
+        
+        //Adds a new reservation to the data base
+        cout<<"addReservation can ba tested By flightinquiry and passenger inquiry"<<endl;
+        
+        //Removes a flight from the passeger and vice versa
+        cout<<"addCancellation can be tested by testing flightinquiry and passengerinquiry"<<endl;
+        
+        //Makes a passenger inquiry and returns the flights a passenger is currently on
+        cout<< "Testing makePassengerInquiry"<<endl;
+        vector<Flight*>* t_pInquiry=my_model->makePassengerInquiry("Tom");
+        
+        for (vector<Flight*>::iterator it2= (*t_pInquiry).begin();it2!=(*t_pInquiry).end();++it2){
+            cout<<"Flights Tom's on "<<(*it2)->getCode()<<endl;
+        }
+            //Make a flight inquiry and return a pointer to a pair of iterators, delimiting a list of booked/waiting passengers
+            
+            cout<<"Testing makeFlightInquiry"<<endl;
+            pair<vector<Passenger*>::iterator,vector<Passenger*>::iterator>* t_fInquiry=my_model->makeFlightInquiry("Code1", Flight::Economy, Flight::Booked);
+            cout<<"Passengers on flighe Code1.."<<endl;
+            multimap<string, Flight*>::iterator it3= (*t_fInquiry).first;
+            vector<Flight*>* flights = new vector<Flight*>();
     
-    
-    //Construct a flight
-    Flight* flight1 = new Flight("Code1", "0900", "25102012", 10);
-    Flight* flight2 = new Flight("Code2", "1000","25112013",10);
-    Flight* flight3 = new Flight("Code3","1100","25112013",10);
-    Flight* flight4 = new Flight("Code4","1200","25112013",10);
-    
-    
-    //Construct a passenger
-    Model* my_model = Model::getModel();
-    my_model->addFlight(flight1);
-    my_model->addFlight(flight2);
-    my_model->addFlight(flight3);
-    my_model->addFlight(flight4);
-    
-    for(map<string,Flight*>::iterator it=m_flightByCode.begin();it!=m_flightByCode.end();++it){
-        cout<< "checking the flight by code database."<<endl;
-        cout<< it->first << (it->second)->getDate() << (it->second)->getCode() <<endl;
-        cout<< "Succeed!. "<< endl;
-    }
-    
-    
-    //Get a pointer to a vector of flights on the same date
-    vector<Flight*>* t_dateflight =my_model->getFlightsByDate("25122013");
-    if (t_dateflight!=nullptr) {
-        cout<<"Going into the loop."<<endl;
-        for(vector<Flight*>::iterator it=(*t_dateflight).begin();it!=(*t_dateflight).end();++it)
-            cout<< (*it)->getCode()<<endl;
-    }
-    
-    
-    my_model->addPassenger("Emily");
-    my_model->addPassenger("LILY");
-    my_model->addPassenger("TOM");
-    my_model->addPassenger("Anamaria");
-    
-    
-    
-    //Adds a new reservation to the data base
-    // void addReservation(string _name, string _code, Flight::SeatClass _class);
-    my_model->addReservation("Emily", "Code1", Flight::First);
-    my_model->addReservation("Tom", "Code1", Flight::First);
-    
-    //Returns a flight by its code
-    Flight* cflight=my_model->getFlightByCode("Code1");
-    cout<<cflight->getDate()<<"  "<<cflight->getCode()<<endl;
-    cout<<cflight->getSeatAvailability(Flight::First)<<endl;
-    cout<<cflight->Booked<<endl;
-    //Returns a passenger by name
-    Passenger* passenger1 = my_model->getPassengerByName("Emily");
-    cout<< passenger1->getName()<<endl;
-    Passenger* passenger2 =my_model->getPassengerByName("Julian");
-    if (passenger2!=nullptr) {
-        cout<<"This is a bad pointer to somewhere.\n"<<endl;
-    }
-    else
-        cout<<"No passenger in this name!!!\n"<<endl;
-    
-    
-    
-    
-    
-    
-    
-    //Given a string, returns the class it corresponds to
-    
-    //Makes a passenger inquiry and returns the flights a passenger is currently on
-    vector<Flight*>* t_passengerinquiry=my_model->makePassengerInquiry("Emily");
-    for (vector<Flight*>::iterator it =(*t_passengerinquiry).begin(); it!=(*t_passengerinquiry).end(); ++it)
-    {
-        cout<< (*it)->getCode()<<endl;
-    }
-    
+            while (it3 != (*t_fInquiry).second) {
+                cout<< it3->second->getName()<< endl;
+                ++it3;
+              }
+
+            
 }
